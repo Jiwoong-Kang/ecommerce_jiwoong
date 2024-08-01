@@ -1,0 +1,9 @@
+services:
+  ecommerce_pg:
+    container_name: ecommerce_pg
+    image: postgres:latest
+    restart: always
+    env_file:
+      - docker.env
+    ports:
+      - "5432:5432"
