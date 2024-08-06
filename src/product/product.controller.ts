@@ -49,6 +49,7 @@ export class ProductController {
   async updateProductById(
     @Param('id') id: string,
     @Body() updateProductDto: CreateProductDto,
+    //CreateProductDto는 내가 바꿀 내용을 가져오게 한다. 그리고 updateproductDto는 모든지 바꿀수 있는 변수 x라고 생각하면 된다.
   ) {
     return await this.productService.updateProductById(id, updateProductDto);
   }
