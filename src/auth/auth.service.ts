@@ -5,6 +5,7 @@ import { LoginUserDto } from '../user/dto/login-user.dto';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
+import { TokenPayload } from './interfaces/tokenPayload.interface';
 
 @Injectable()
 export class AuthService {
@@ -33,7 +34,7 @@ export class AuthService {
   }
 
   public generateAccessToken(userId: string) {
-    const payload: any = { userId };
+    const payload: TokenPayload = { userId };
     const token = this.jwtService.sign(payload, {
       secret: this.configService.get('ACCESS_TOKEN_SECRET'),
       expiresIn: `${this.configService.get('ACCESS_TOKEN_EXPIRATION_TIME')}`,
