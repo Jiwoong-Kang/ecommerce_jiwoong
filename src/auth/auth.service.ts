@@ -6,6 +6,7 @@ import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { TokenPayload } from './interfaces/tokenPayload.interface';
+import { PostgresErrorCodes } from '../database/postgresErrorCodes.enum';
 
 @Injectable()
 export class AuthService {
@@ -16,8 +17,28 @@ export class AuthService {
   ) {}
 
   async signupUser(createUserDto: CreateUserDto) {
-    return await this.userService.createUser(createUserDto);
+    // return await this.userService.createUser(createUserDto);
+    try {
+      return await this.userService.createUser(createUserDto);
+    } catch (error) {
+      if (error?.code === PostgresErrorCodes.unique_violation) {
+        throw new HttpException(
+          'User with that email already exists',
+          HttpStatus.BAD_REQUEST,
+        );
+      } else if (error?.code === PostgresErrorCodes.not_null_violation) {
+        throw new HttpException(
+          'please check not null body value',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      throw new HttpException(
+        'Something went wrong',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
+
   // 이메일 유무 체크 -> 패스워드 매칭 유무(with password decoding)
   async loginUser(loginUserDto: LoginUserDto) {
     // 이메일 유무 체크
