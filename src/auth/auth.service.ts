@@ -7,6 +7,8 @@ import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { TokenPayload } from './interfaces/tokenPayload.interface';
 import { PostgresErrorCodes } from '../database/postgresErrorCodes.enum';
+import { EmailService } from '../email/email.service';
+import welcomeSignupEmail from '../common/template/welcomeSignup';
 
 @Injectable()
 export class AuthService {
@@ -14,6 +16,7 @@ export class AuthService {
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
+    private readonly emailService: EmailService,
   ) {}
 
   async signupUser(createUserDto: CreateUserDto) {
@@ -61,5 +64,14 @@ export class AuthService {
       expiresIn: `${this.configService.get('ACCESS_TOKEN_EXPIRATION_TIME')}`,
     });
     return token;
+  }
+
+  async signupWelcomeEmail(email: string) {
+    await this.emailService.sendMail({
+      to: email,
+      subject: 'Welcome to Jiwoong world',
+      html: welcomeSignupEmail(email),
+    });
+    return 'Please check your email';
   }
 }

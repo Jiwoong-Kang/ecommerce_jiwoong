@@ -1,11 +1,11 @@
 import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
-import { LoginUserDto } from '../user/dto/login-user.dto';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { RequestWithUser } from './interfaces/requestWithUser.interface';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { LoginUserDto } from '../user/dto/login-user.dto';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -15,11 +15,13 @@ export class AuthController {
   // 회원가입
   @Post('/signup')
   async signupUser(@Body() createUserDto: CreateUserDto) {
-    return await this.authService.signupUser(createUserDto);
+    await this.authService.signupUser(createUserDto);
+    return await this.authService.signupWelcomeEmail(createUserDto.email);
   }
 
   // 로그인
   @Post('/login')
+  @ApiBody({ type: LoginUserDto })
   @UseGuards(LocalAuthGuard)
   async loginUser(@Req() req: RequestWithUser) {
     const user = req.user;
