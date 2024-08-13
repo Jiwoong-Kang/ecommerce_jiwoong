@@ -74,4 +74,22 @@ export class AuthService {
     });
     return 'Please check your email';
   }
+
+  async findPasswordSendEmail(email: string) {
+    const payload: any = { email };
+    const user = await this.userService.getUserByEmail(email);
+    const token = this.jwtService.sign(payload, {
+      secret: this.configService.get('FIND_PASSWORD_TOKEN_SECRET'),
+      expiresIn: `${this.configService.get('FIND_PASSWORD_EXPIRATION_TIME')}`,
+    });
+    const url = `${this.configService.get('EMAIL_BASE_URL')}/change/password?token=${token}`;
+    await this.emailService.sendMail({
+      to: email,
+      subject: 'Jiwoong World Password 변경',
+      text: `비밀번호 찾기 ${url}`,
+    });
+    return 'Please check your email';
+  }
+
+  async changePasswordWithToken(newPassword: string, token: string) {}
 }
