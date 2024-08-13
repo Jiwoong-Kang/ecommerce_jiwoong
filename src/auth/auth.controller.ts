@@ -16,11 +16,15 @@ import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { LoginUserDto } from '../user/dto/login-user.dto';
 import { EmailDto } from '../user/dto/email.dto';
 import { ChangePasswordDto } from '../user/dto/change-password.dto';
+import { UserService } from '../user/user.service';
 
 @ApiTags('Auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly userService: UserService,
+  ) {}
 
   // 회원가입
   @Post('/signup')
@@ -58,6 +62,6 @@ export class AuthController {
 
   @Put('/change/password')
   async changePassword(@Body() changePasswordDto: ChangePasswordDto) {
-    return '';
+    return await this.userService.changePasswordWithToken(changePasswordDto);
   }
 }

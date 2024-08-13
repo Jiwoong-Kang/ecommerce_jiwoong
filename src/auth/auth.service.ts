@@ -90,6 +90,4 @@ export class AuthService {
     });
     return 'Please check your email';
   }
-
-  async changePasswordWithToken(newPassword: string, token: string) {}
 }
