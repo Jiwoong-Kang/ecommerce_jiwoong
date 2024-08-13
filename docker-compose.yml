@@ -7,3 +7,10 @@ services:
       - docker.env
     ports:
       - "5432:5432"
+  ecommerce_redis:
+    container_name: ecommerce_redis
+    image: 'redis:alpine'
+    env_file:
+      - docker.env
+    ports:
+      - ${REDIS_PORT}:${REDIS_PORT}

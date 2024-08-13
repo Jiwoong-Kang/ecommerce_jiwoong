@@ -17,6 +17,7 @@ import { LoginUserDto } from '../user/dto/login-user.dto';
 import { EmailDto } from '../user/dto/email.dto';
 import { ChangePasswordDto } from '../user/dto/change-password.dto';
 import { UserService } from '../user/user.service';
+import { EmailVerificationDto } from '../user/dto/email-verification.dto';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -69,6 +70,13 @@ export class AuthController {
   async sendEmail(@Body() emailDto: EmailDto) {
     return await this.authService.initiateEmailAddressVerification(
       emailDto.email,
+    );
+  }
+
+  @Post('/check/email')
+  async checkEmail(@Body() emailVerificationDto: EmailVerificationDto) {
+    return await this.authService.confirmEmailVerification(
+      emailVerificationDto,
     );
   }
 }

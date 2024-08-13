@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { UserService } from '../user/user.service';
 import { CreateUserDto } from '../user/dto/create-user.dto';
 import { LoginUserDto } from '../user/dto/login-user.dto';
@@ -10,6 +10,9 @@ import { PostgresErrorCodes } from '../database/postgresErrorCodes.enum';
 import { EmailService } from '../email/email.service';
 import welcomeSignupEmail from '../common/template/welcomeSignup';
 import { signupEmail } from '../common/template/verificationEmail';
+import { CACHE_MANAGER } from '@nestjs/common/cache';
+import { Cache } from 'cache-manager';
+import { EmailVerificationDto } from '../user/dto/email-verification.dto';
 
 @Injectable()
 export class AuthService {
@@ -18,6 +21,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
     private readonly emailService: EmailService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
   async signupUser(createUserDto: CreateUserDto) {
@@ -93,7 +97,11 @@ export class AuthService {
   }
 
   async initiateEmailAddressVerification(email: string) {
+    // 랜덤 번호 생성
     const generateNumber = this.generateOTP();
+    // redis에 저장
+    await this.cacheManager.set(email, generateNumber);
+    // 이메일 전송
     await this.emailService.sendMail({
       to: email,
       subject: 'Jiwoong - Verification Email Address',
@@ -107,5 +115,15 @@ export class AuthService {
       OTP += Math.floor(Math.random() * 10);
     }
     return OTP;
+  }
+
+  async confirmEmailVerification(emailVerificationDto: EmailVerificationDto) {
+    const { email, code } = emailVerificationDto;
+    const emailCodeByRedis = await this.cacheManager.get(email);
+    if (emailCodeByRedis !== code) {
+      throw new HttpException('Wrong code provided', HttpStatus.BAD_REQUEST);
+    }
+    await this.cacheManager.del(email);
+    return true;
   }
 }

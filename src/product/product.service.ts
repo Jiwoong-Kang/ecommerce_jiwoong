@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
+import { EmailVerificationDto } from '../user/dto/email-verification.dto';
 
 @Injectable()
 export class ProductService {
