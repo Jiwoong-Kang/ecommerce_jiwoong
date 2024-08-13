@@ -9,6 +9,7 @@ import { TokenPayload } from './interfaces/tokenPayload.interface';
 import { PostgresErrorCodes } from '../database/postgresErrorCodes.enum';
 import { EmailService } from '../email/email.service';
 import welcomeSignupEmail from '../common/template/welcomeSignup';
+import { signupEmail } from '../common/template/verificationEmail';
 
 @Injectable()
 export class AuthService {
@@ -89,5 +90,22 @@ export class AuthService {
       text: `비밀번호 찾기 ${url}`,
     });
     return 'Please check your email';
+  }
+
+  async initiateEmailAddressVerification(email: string) {
+    const generateNumber = this.generateOTP();
+    await this.emailService.sendMail({
+      to: email,
+      subject: 'Jiwoong - Verification Email Address',
+      html: signupEmail(generateNumber),
+    });
+  }
+
+  generateOTP() {
+    let OTP = '';
+    for (let i = 1; i <= 6; i++) {
+      OTP += Math.floor(Math.random() * 10);
+    }
+    return OTP;
   }
 }

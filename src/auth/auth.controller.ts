@@ -64,4 +64,11 @@ export class AuthController {
   async changePassword(@Body() changePasswordDto: ChangePasswordDto) {
     return await this.userService.changePasswordWithToken(changePasswordDto);
   }
+
+  @Post('/send/email')
+  async sendEmail(@Body() emailDto: EmailDto) {
+    return await this.authService.initiateEmailAddressVerification(
+      emailDto.email,
+    );
+  }
 }
