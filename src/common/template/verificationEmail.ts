@@ -4,7 +4,7 @@ export const signupEmail = (randomNo) => `
     <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>BeeCouple 회원가입 인증</title>
+      <title>Jiwoong World 회원가입 인증</title>
       <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,17 +48,17 @@ export const signupEmail = (randomNo) => `
     </head>
     <body>
       <div class="container">
-          <div class="header">BeeCouple 회원가입 인증</div>
+          <div class="header">Jiwoong World 회원가입 인증</div>
           <div class="content">
               <p>안녕하세요,</p>
-              <p>BeeCouple에 가입해 주셔서 감사합니다. 아래의 인증 번호를 회원가입 페이지에 입력하여 회원가입 절차를 완료해 주세요.</p>
+              <p>Jiwoong World 에 가입해 주셔서 감사합니다. 아래의 인증 번호를 회원가입 페이지에 입력하여 회원가입 절차를 완료해 주세요.</p>
               <h1><strong> 인증 번호: ${randomNo} </strong></h1>
               <p>이 번호는 귀하의 이메일 주소를 인증하는 데 사용됩니다.</p>
 
               <p>만약 인증 번호를 요청하지 않았다면, 이 메일을 무시해 주세요.</p>
           </div>
           <div class="footer">
-              <p>BeeCouple 팀 드림</p>
+              <p>Jiwoong World 팀 드림</p>
               <p>궁금하신 사항이 있으시면 언제든지 저희 고객지원 센터로 문의해 주세요.</p>
           </div>
       </div>

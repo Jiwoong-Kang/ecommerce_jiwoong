@@ -156,8 +156,8 @@ const welcomeSignupEmail = (email) => `
 \t<table class="nl-container" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: transparent; background-repeat: no-repeat; background-image: none; background-position: top left; background-size: auto;">
 \t\t<tbody>
 \t\t\t<tr>
-<h1>Welcome to {email}</h1> 
-<!--고칠 것-->
+<h1>Welcome to ${email}</h1> 
+<!--$사인이 붙으면서 email을 받아서 직접 사용할 수 있게 됐다.-->
 \t\t\t\t<td>
 \t\t\t\t\t<table class="row row-1" align="center" width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-size: auto;">
 \t\t\t\t\t\t<tbody>
