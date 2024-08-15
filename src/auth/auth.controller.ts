@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpCode,
   HttpStatus,
   Post,
   Put,
@@ -32,8 +33,9 @@ export class AuthController {
   // 회원가입
   @Post('/signup')
   async signupUser(@Body() createUserDto: CreateUserDto) {
-    await this.authService.signupUser(createUserDto);
-    return await this.authService.signupWelcomeEmail(createUserDto.email);
+    const newUser = await this.authService.signupUser(createUserDto);
+    await this.authService.signupWelcomeEmail(createUserDto.email);
+    return newUser;
   }
   //browser 안에서 사용자가 입력하는 것은 body이고 url에서 입력할 변수명은 param을 사용한다.
 
@@ -82,15 +84,19 @@ export class AuthController {
     );
   }
 
+  @HttpCode(200)
   @Get('/google')
   @UseGuards(GoogleAuthGuard)
   async googleLogin() {
     return HttpStatus.OK;
   }
 
+  @HttpCode(200)
   @Get('/google/callback')
   @UseGuards(GoogleAuthGuard)
   async googleLoginCallback(@Req() req: RequestWithUser) {
-    return req.user;
+    const user = req.user;
+    const token = await this.authService.generateAccessToken(user.id);
+    return { user, token };
   }
 }
