@@ -21,6 +21,7 @@ import { ChangePasswordDto } from '../user/dto/change-password.dto';
 import { UserService } from '../user/user.service';
 import { EmailVerificationDto } from '../user/dto/email-verification.dto';
 import { GoogleAuthGuard } from './guards/google-auth.guard';
+import { KakaoAuthGuard } from './guards/kakao-auth.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -95,6 +96,20 @@ export class AuthController {
   @Get('/google/callback')
   @UseGuards(GoogleAuthGuard)
   async googleLoginCallback(@Req() req: RequestWithUser) {
+    const user = req.user;
+    const token = await this.authService.generateAccessToken(user.id);
+    return { user, token };
+  }
+
+  @Get('/kakao')
+  @UseGuards(KakaoAuthGuard)
+  async kakaoLogin() {
+    return HttpStatus.OK;
+  }
+
+  @Get('/kakao/callback')
+  @UseGuards(KakaoAuthGuard)
+  async kakaoLoginCallback(@Req() req: RequestWithUser) {
     const user = req.user;
     const token = await this.authService.generateAccessToken(user.id);
     return { user, token };

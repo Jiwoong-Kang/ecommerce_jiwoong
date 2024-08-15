@@ -41,7 +41,6 @@ export class UserService {
   // 유저를 등록하는 로직
   async createUser(createUserDto: CreateUserDto) {
     const newUser = await this.userRepository.create(createUserDto);
-    console.log(newUser);
     await this.userRepository.save(newUser);
     return newUser;
   }
