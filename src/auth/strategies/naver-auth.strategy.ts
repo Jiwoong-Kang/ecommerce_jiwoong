@@ -37,7 +37,6 @@ export class NaverAuthStrategy extends PassportStrategy(
           HttpStatus.CONFLICT,
         );
       }
-      console.log('+++++++++++++++++++++++++++');
       done(null, user);
     } catch (err) {
       if (err.status === 404) {
@@ -47,8 +46,12 @@ export class NaverAuthStrategy extends PassportStrategy(
           provider,
           profileImg: profile_image,
         });
-        console.log('------');
         done(null, newUser);
+      } else if (err.status === 409) {
+        throw new HttpException(
+          'This email already exists',
+          HttpStatus.CONFLICT,
+        );
       }
     }
   }

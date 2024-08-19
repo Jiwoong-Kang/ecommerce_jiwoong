@@ -29,7 +29,7 @@ export class GoogleAuthStrategy extends PassportStrategy(
     done: VerifyCallback,
   ) {
     //name, email, provider
-    console.log(profile);
+
     const { provider, displayName, email, picture } = profile;
     try {
       // 이메일 유무 체크
@@ -42,7 +42,6 @@ export class GoogleAuthStrategy extends PassportStrategy(
           HttpStatus.CONFLICT,
         );
       }
-      console.log('+++++++++++++++++++');
       done(null, user);
     } catch (err) {
       console.log(err);
@@ -54,8 +53,12 @@ export class GoogleAuthStrategy extends PassportStrategy(
           provider,
           profileImg: picture,
         });
-        console.log('-----------');
         done(null, newUser);
+      } else if (err.status === 409) {
+        throw new HttpException(
+          'Your email already exists',
+          HttpStatus.CONFLICT,
+        );
       }
     }
   }

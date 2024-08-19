@@ -25,7 +25,6 @@ export class KakaoAuthStrategy extends PassportStrategy(
     profile: any,
     done: any,
   ) {
-    console.log(profile);
     const { provider, displayName } = profile;
     const { profile_image } = profile._json.properties;
     const { email } = profile._json.kakao_account;
@@ -38,7 +37,6 @@ export class KakaoAuthStrategy extends PassportStrategy(
           HttpStatus.CONFLICT,
         );
       }
-      console.log('+++++++++++++++++++++++++++');
       done(null, user);
     } catch (err) {
       if (err.status === 404) {
@@ -48,8 +46,12 @@ export class KakaoAuthStrategy extends PassportStrategy(
           provider,
           profileImg: profile_image,
         });
-        console.log('-----------');
         done(null, newUser);
+      } else if (err.status === 409) {
+        throw new HttpException(
+          'Your email already exists',
+          HttpStatus.CONFLICT,
+        );
       }
     }
   }

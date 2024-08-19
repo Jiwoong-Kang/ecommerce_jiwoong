@@ -14,7 +14,7 @@ import { CreateUserDto } from '../user/dto/create-user.dto';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { RequestWithUser } from './interfaces/requestWithUser.interface';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
-import { ApiBody, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
 import { LoginUserDto } from '../user/dto/login-user.dto';
 import { EmailDto } from '../user/dto/email.dto';
 import { ChangePasswordDto } from '../user/dto/change-password.dto';
@@ -56,6 +56,8 @@ export class AuthController {
   //   return { user, token };
   // }
 
+  @ApiBearerAuth()
+  //스웨거 상에서 헤더에 토큰이 있단 걸 알려줘서 프로그램이 알아듣게 함
   @Get()
   @UseGuards(JwtAuthGuard)
   async authenticate(@Req() req: RequestWithUser) {
