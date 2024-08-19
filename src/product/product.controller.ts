@@ -6,11 +6,15 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import RoleGuard from '../auth/guards/role.guard';
+import { Role } from '../common/enums/role.enum';
 
+@ApiBearerAuth()
 @ApiTags('Product')
 @Controller('product')
 export class ProductController {
@@ -41,12 +45,14 @@ export class ProductController {
   }
 
   // product의 id에 해당되는 데이터를 삭제하는 api
+  @UseGuards(RoleGuard(Role.ADMIN))
   @Delete('/:id')
   async deleteProductById(@Param('id') id: string) {
     return await this.productService.deleteProductById(id);
   }
 
   // product의 id에 해당하는 데이터를 수정하는 api
+  @UseGuards(RoleGuard(Role.ADMIN))
   @Put('/:id')
   async updateProductById(
     @Param('id') id: string,
