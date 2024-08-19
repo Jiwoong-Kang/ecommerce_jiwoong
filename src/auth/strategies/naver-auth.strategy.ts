@@ -16,7 +16,7 @@ export class NaverAuthStrategy extends PassportStrategy(
   ) {
     super({
       clientID: configService.get('NAVER_AUTH_CLIENT_ID'),
-      secret: configService.get('NAVER_AUTH_CLIENT_SECRET'),
+      clientSecret: configService.get('NAVER_AUTH_CLIENT_SECRET'),
       callbackURL: configService.get('NAVER_AUTH_CALLBACK_URL'),
     });
   }
@@ -26,11 +26,8 @@ export class NaverAuthStrategy extends PassportStrategy(
     profile: any,
     done: any,
   ) {
-    const { provider, displayName, email, profile_image } = profile;
-    console.log('provider', provider);
-    console.log('displayName', displayName);
-    console.log('email', email);
-    console.log('profile', profile_image);
+    const { provider, displayName } = profile;
+    const { email, profile_image } = profile._json;
 
     try {
       const user = await this.userService.getUserByEmail(email);
