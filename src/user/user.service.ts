@@ -56,4 +56,9 @@ export class UserService {
     });
     return 'Updated password';
   }
+
+  //전제 유저를 가져오는 로직
+  async getAllUsers() {
+    return await this.userRepository.find();
+  }
 }

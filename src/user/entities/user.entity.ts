@@ -5,6 +5,7 @@ import * as gravatar from 'gravatar';
 import { InternalServerErrorException } from '@nestjs/common';
 import { Exclude } from 'class-transformer';
 import { Provider } from '../../common/enums/provider.enum';
+import { Role } from '../../common/enums/role.enum';
 
 @Entity()
 export class User extends BaseEntity {
@@ -30,6 +31,16 @@ export class User extends BaseEntity {
     default: Provider.LOCAL,
   })
   public provider: Provider;
+
+  @Column({
+    type: 'enum',
+    enum: Role,
+    array: true,
+    default: [Role.USER],
+    //동시에 할 수 있을 때는 array를 사용해준다. user이자 admin이 될 수 있기 때문이다.
+  })
+  @Exclude()
+  public roles: Role[];
 
   @BeforeInsert()
   async beforeSaveFunction() {
