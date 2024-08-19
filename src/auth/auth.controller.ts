@@ -22,6 +22,7 @@ import { UserService } from '../user/user.service';
 import { EmailVerificationDto } from '../user/dto/email-verification.dto';
 import { GoogleAuthGuard } from './guards/google-auth.guard';
 import { KakaoAuthGuard } from './guards/kakao-auth.guard';
+import { NaverAuthGuard } from './guards/naver-auth.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -110,6 +111,20 @@ export class AuthController {
   @Get('/kakao/callback')
   @UseGuards(KakaoAuthGuard)
   async kakaoLoginCallback(@Req() req: RequestWithUser) {
+    const user = req.user;
+    const token = await this.authService.generateAccessToken(user.id);
+    return { user, token };
+  }
+
+  @Get('/naver')
+  @UseGuards(NaverAuthGuard)
+  async naverLogin() {
+    return HttpStatus.OK;
+  }
+
+  @Get('/naver/callback')
+  @UseGuards(NaverAuthGuard)
+  async naverLoginCallback(@Req() req: RequestWithUser) {
     const user = req.user;
     const token = await this.authService.generateAccessToken(user.id);
     return { user, token };

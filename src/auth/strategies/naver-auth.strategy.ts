@@ -1,22 +1,23 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
-import { Strategy } from 'passport-kakao';
+import { Strategy } from 'passport-naver';
+import { Provider } from '../../common/enums/provider.enum';
 import { ConfigService } from '@nestjs/config';
 import { UserService } from '../../user/user.service';
-import { Provider } from '../../common/enums/provider.enum';
 
 @Injectable()
-export class KakaoAuthStrategy extends PassportStrategy(
+export class NaverAuthStrategy extends PassportStrategy(
   Strategy,
-  Provider.KAKAO,
+  Provider.NAVER,
 ) {
   constructor(
     private readonly configService: ConfigService,
     private readonly userService: UserService,
   ) {
     super({
-      clientID: configService.get('KAKAO_AUTH_CLIENT_ID'),
-      callbackURL: configService.get('KAKAO_AUTH_CALLBACK_URL'),
+      clientID: configService.get('NAVER_AUTH_CLIENT_ID'),
+      secret: configService.get('NAVER_AUTH_CLIENT_SECRET'),
+      callbackURL: configService.get('NAVER_AUTH_CALLBACK_URL'),
     });
   }
   async validate(
@@ -25,10 +26,11 @@ export class KakaoAuthStrategy extends PassportStrategy(
     profile: any,
     done: any,
   ) {
-    console.log(profile);
-    const { provider, displayName } = profile;
-    const { profile_image } = profile._json.properties;
-    const { email } = profile._json.kakao_account;
+    const { provider, displayName, email, profile_image } = profile;
+    console.log('provider', provider);
+    console.log('displayName', displayName);
+    console.log('email', email);
+    console.log('profile', profile_image);
 
     try {
       const user = await this.userService.getUserByEmail(email);
@@ -48,7 +50,7 @@ export class KakaoAuthStrategy extends PassportStrategy(
           provider,
           profileImg: profile_image,
         });
-        console.log('-----------');
+        console.log('------');
         done(null, newUser);
       }
     }
