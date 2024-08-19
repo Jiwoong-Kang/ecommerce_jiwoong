@@ -12,6 +12,9 @@ import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { ChangePasswordDto } from './dto/change-password.dto';
+import { PageOptionsDto } from '../common/dtos/page-options.dto';
+import { PageDto } from '../common/dtos/page.dto';
+import { PageMetaDto } from '../common/dtos/page-meta.dto';
 
 @Injectable()
 export class UserService {
@@ -58,7 +61,16 @@ export class UserService {
   }
 
   //전제 유저를 가져오는 로직
-  async getAllUsers() {
-    return await this.userRepository.find();
+  async getAllUsers(pageOptionsDto: PageOptionsDto): Promise<PageDto<User>> {
+    // return await this.userRepository.find();
+    const queryBuilder = this.userRepository.createQueryBuilder('user');
+    queryBuilder
+      .orderBy('user.createdAt', pageOptionsDto.order)
+      .skip(pageOptionsDto.skip)
+      .take(pageOptionsDto.take);
+    const itemCount = await queryBuilder.getCount();
+    const { entities } = await queryBuilder.getRawAndEntities();
+    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
+    return new PageDto(entities, pageMetaDto);
   }
 }

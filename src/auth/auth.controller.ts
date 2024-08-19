@@ -36,7 +36,7 @@ export class AuthController {
   @Post('/signup')
   async signupUser(@Body() createUserDto: CreateUserDto) {
     const newUser = await this.authService.signupUser(createUserDto);
-    await this.authService.signupWelcomeEmail(createUserDto.email);
+    // await this.authService.signupWelcomeEmail(createUserDto.email);
     return newUser;
   }
   //browser 안에서 사용자가 입력하는 것은 body이고 url에서 입력할 변수명은 param을 사용한다.

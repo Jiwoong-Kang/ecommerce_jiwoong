@@ -1,18 +1,23 @@
-import { Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import RoleGuard from '../auth/guards/role.guard';
 import { Role } from '../common/enums/role.enum';
+import { User } from './entities/user.entity';
+import { PageOptionsDto } from '../common/dtos/page-options.dto';
+import { PageDto } from '../common/dtos/page.dto';
 
+@ApiBearerAuth()
 @ApiTags('User')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @ApiBearerAuth()
   @UseGuards(RoleGuard(Role.ADMIN))
   @Get('/all')
-  async getAllUsers() {
-    return await this.userService.getAllUsers();
+  async getAllUsers(
+    @Query() pageOptionsDto: PageOptionsDto,
+  ): Promise<PageDto<User>> {
+    return await this.userService.getAllUsers(pageOptionsDto);
   }
 }

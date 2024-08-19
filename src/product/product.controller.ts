@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { ProductService } from './product.service';
@@ -13,6 +14,9 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import RoleGuard from '../auth/guards/role.guard';
 import { Role } from '../common/enums/role.enum';
+import { PageOptionsDto } from '../common/dtos/page-options.dto';
+import { Product } from './entities/product.entity';
+import { PageDto } from '../common/dtos/page.dto';
 
 @ApiBearerAuth()
 @ApiTags('Product')
@@ -22,8 +26,10 @@ export class ProductController {
 
   // product 전체를 불러오는 api
   @Get('/all')
-  async getAllProducts() {
-    return await this.productService.getProducts();
+  async getAllProducts(
+    @Query() pageOptionsDto: PageOptionsDto,
+  ): Promise<PageDto<Product>> {
+    return await this.productService.getProducts(pageOptionsDto);
   }
 
   // product를 등록하는 api
