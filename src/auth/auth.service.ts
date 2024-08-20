@@ -1,19 +1,19 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { UserService } from '../user/user.service';
-import { CreateUserDto } from '../user/dto/create-user.dto';
-import { LoginUserDto } from '../user/dto/login-user.dto';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { TokenPayload } from './interfaces/tokenPayload.interface';
-import { PostgresErrorCodes } from '../database/postgresErrorCodes.enum';
-import { EmailService } from '../email/email.service';
 import welcomeSignupEmail from '../common/template/welcomeSignup';
-import { signupEmail } from '../common/template/verificationEmail';
 import { CACHE_MANAGER } from '@nestjs/common/cache';
 import { Cache } from 'cache-manager';
-import { EmailVerificationDto } from '../user/dto/email-verification.dto';
-import { Provider } from '../common/enums/provider.enum';
+import { UserService } from '@user/user.service';
+import { CreateUserDto } from '@user/dto/create-user.dto';
+import { Provider } from '@common/enums/provider.enum';
+import { PostgresErrorCodes } from '@database/postgresErrorCodes.enum';
+import { LoginUserDto } from '@user/dto/login-user.dto';
+import { signupEmail } from '@common/template/verificationEmail';
+import { EmailVerificationDto } from '@user/dto/email-verification.dto';
+import { EmailService } from "@email/email.service";
 
 @Injectable()
 export class AuthService {

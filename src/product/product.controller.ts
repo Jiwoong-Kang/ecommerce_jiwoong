@@ -13,10 +13,10 @@ import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import RoleGuard from '../auth/guards/role.guard';
-import { Role } from '../common/enums/role.enum';
-import { PageOptionsDto } from '../common/dtos/page-options.dto';
 import { Product } from './entities/product.entity';
-import { PageDto } from '../common/dtos/page.dto';
+import { PageOptionsDto } from '@common/dtos/page-options.dto';
+import { PageDto } from '@common/dtos/page.dto';
+import { Role } from '@common/enums/role.enum';
 
 @ApiBearerAuth()
 @ApiTags('Product')

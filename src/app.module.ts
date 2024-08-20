@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ProductModule } from './product/product.module';
-import { OrderModule } from './order/order.module';
 import { ConfigModule } from '@nestjs/config';
-import { DatabaseModule } from './database/database.module';
-import { UserModule } from './user/user.module';
-import { AuthModule } from './auth/auth.module';
-import { EmailModule } from './email/email.module';
-import { RedisModule } from './redis/redis.module';
 import * as Joi from '@hapi/joi';
+import { DatabaseModule } from '@database/database.module';
+import { UserModule } from '@user/user.module';
+import { ProductModule } from '@product/product.module';
+import { AuthModule } from '@auth/auth.module';
+import { OrderModule } from "@order/order.module";
+import { EmailModule } from "@email/email.module";
+import { RedisModule } from "@redis/redis.module";
 
 @Module({
   imports: [

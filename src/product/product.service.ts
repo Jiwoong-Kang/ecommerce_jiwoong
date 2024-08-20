@@ -3,9 +3,9 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
-import { PageOptionsDto } from '../common/dtos/page-options.dto';
-import { PageDto } from '../common/dtos/page.dto';
-import { PageMetaDto } from '../common/dtos/page-meta.dto';
+import { PageOptionsDto } from '@common/dtos/page-options.dto';
+import { PageDto } from '@common/dtos/page.dto';
+import { PageMetaDto } from '@common/dtos/page-meta.dto';
 
 @Injectable()
 export class ProductService {

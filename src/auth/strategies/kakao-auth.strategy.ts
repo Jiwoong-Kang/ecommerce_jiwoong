@@ -2,8 +2,8 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-kakao';
 import { ConfigService } from '@nestjs/config';
-import { UserService } from '../../user/user.service';
-import { Provider } from '../../common/enums/provider.enum';
+import { Provider } from '@common/enums/provider.enum';
+import { UserService } from '@user/user.service';
 
 @Injectable()
 export class KakaoAuthStrategy extends PassportStrategy(

@@ -2,10 +2,10 @@ import { Controller, Get, Query, UseGuards } from '@nestjs/common';
 import { UserService } from './user.service';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import RoleGuard from '../auth/guards/role.guard';
-import { Role } from '../common/enums/role.enum';
 import { User } from './entities/user.entity';
-import { PageOptionsDto } from '../common/dtos/page-options.dto';
-import { PageDto } from '../common/dtos/page.dto';
+import { Role } from '@common/enums/role.enum';
+import { PageOptionsDto } from '@common/dtos/page-options.dto';
+import { PageDto } from '@common/dtos/page.dto';
 
 @ApiBearerAuth()
 @ApiTags('User')

@@ -1,11 +1,11 @@
-import { BaseEntity } from '../../common/base.entity';
 import { BeforeInsert, Column, Entity } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import * as gravatar from 'gravatar';
 import { InternalServerErrorException } from '@nestjs/common';
 import { Exclude } from 'class-transformer';
-import { Provider } from '../../common/enums/provider.enum';
-import { Role } from '../../common/enums/role.enum';
+import { BaseEntity } from '@common/base.entity';
+import { Provider } from '@common/enums/provider.enum';
+import { Role } from '@common/enums/role.enum';
 
 @Entity()
 export class User extends BaseEntity {

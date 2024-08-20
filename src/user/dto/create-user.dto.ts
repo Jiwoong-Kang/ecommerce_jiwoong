@@ -6,7 +6,7 @@ import {
   MinLength,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
-import { Provider } from '../../common/enums/provider.enum';
+import { Provider } from '@common/enums/provider.enum';
 
 export class CreateUserDto {
   @IsString()
