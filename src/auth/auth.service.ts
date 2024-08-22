@@ -2,8 +2,6 @@ import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { TokenPayload } from './interfaces/tokenPayload.interface';
-import welcomeSignupEmail from '../common/template/welcomeSignup';
 import { CACHE_MANAGER } from '@nestjs/common/cache';
 import { Cache } from 'cache-manager';
 import { UserService } from '@user/user.service';
@@ -13,7 +11,9 @@ import { PostgresErrorCodes } from '@database/postgresErrorCodes.enum';
 import { LoginUserDto } from '@user/dto/login-user.dto';
 import { signupEmail } from '@common/template/verificationEmail';
 import { EmailVerificationDto } from '@user/dto/email-verification.dto';
-import { EmailService } from "@email/email.service";
+import { EmailService } from '@email/email.service';
+import { TokenPayload } from '@auth/interfaces/tokenPayload.interface';
+import welcomeSignupEmail from '@common/template/welcomeSignup';
 
 @Injectable()
 export class AuthService {

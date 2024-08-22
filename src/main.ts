@@ -1,9 +1,9 @@
 import { NestFactory, Reflector } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 import { ClassSerializerInterceptor, ValidationPipe } from '@nestjs/common';
-import { setupSwagger } from './config/swagger.document';
 import { TransformInterceptor } from '@common/interceptors/transform.interceptor';
+import { setupSwagger } from '@config/swagger.document';
+import { AppModule } from '@root/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);

@@ -9,14 +9,15 @@ import {
   Query,
   UseGuards,
 } from '@nestjs/common';
-import { ProductService } from './product.service';
-import { CreateProductDto } from './dto/create-product.dto';
+
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import RoleGuard from '../auth/guards/role.guard';
-import { Product } from './entities/product.entity';
 import { PageOptionsDto } from '@common/dtos/page-options.dto';
 import { PageDto } from '@common/dtos/page.dto';
 import { Role } from '@common/enums/role.enum';
+import { ProductService } from '@product/product.service';
+import { Product } from '@product/entities/product.entity';
+import { CreateProductDto } from '@product/dto/create-product.dto';
+import RoleGuard from '@auth/guards/role.guard';
 
 @ApiBearerAuth()
 @ApiTags('Product')

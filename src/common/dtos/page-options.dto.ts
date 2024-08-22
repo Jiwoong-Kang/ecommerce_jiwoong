@@ -1,8 +1,8 @@
-import { Order } from '../constants/order.constant';
 import { ApiPropertyOptional } from '@nestjs/swagger';
-import { IsEnum, IsInt, IsOptional, Max, Min } from 'class-validator';
+import { IsEnum, IsOptional } from 'class-validator';
 import { Type } from 'class-transformer';
 import { number } from '@hapi/joi';
+import { Order } from '@common/constants/order.constant';
 
 export class PageOptionsDto {
   @ApiPropertyOptional({ enum: Order, default: Order.ASC })

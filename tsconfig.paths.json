@@ -3,15 +3,19 @@
     "baseUrl": "./",
     "paths": {
       "@root/*": ["./src/*"],
+      // 이 위에 루트가 .app을 담당한다.
       "@common/*": ["./src/common/*"],
+      "@config/*": ["./src/config/*"],
+      "@consent/*": ["./src/consent/*"],
+      "@email/*": ["./src/email/*"],
+      "@redis/*": ["./src/redis/*"],
       "@database/*": ["./src/database/*"],
       "@user/*": ["./src/user/*"],
       "@auth/*": ["./src/auth/*"],
       "@product/*": ["./src/product/*"],
-      "@redis/*": ["./src/redis/*"],
       "@order/*": ["./src/order/*"],
-      "@email/*": ["./src/email/*"],
-      "@config/*": ["./src/config/*"],
+
+
     }
   }
 }

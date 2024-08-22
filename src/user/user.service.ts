@@ -12,9 +12,9 @@ import * as bcrypt from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { ChangePasswordDto } from './dto/change-password.dto';
-import { PageOptionsDto } from '../common/dtos/page-options.dto';
-import { PageDto } from '../common/dtos/page.dto';
-import { PageMetaDto } from '../common/dtos/page-meta.dto';
+import { PageOptionsDto } from '@common/dtos/page-options.dto';
+import { PageDto } from '@common/dtos/page.dto';
+import { PageMetaDto } from '@common/dtos/page-meta.dto';
 
 @Injectable()
 export class UserService {

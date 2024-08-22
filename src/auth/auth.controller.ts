@@ -9,20 +9,22 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { AuthService } from './auth.service';
-import { LocalAuthGuard } from './guards/local-auth.guard';
-import { RequestWithUser } from './interfaces/requestWithUser.interface';
-import { JwtAuthGuard } from './guards/jwt-auth.guard';
+
 import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
-import { GoogleAuthGuard } from './guards/google-auth.guard';
-import { KakaoAuthGuard } from './guards/kakao-auth.guard';
-import { NaverAuthGuard } from './guards/naver-auth.guard';
+
 import { UserService } from '@user/user.service';
 import { CreateUserDto } from '@user/dto/create-user.dto';
 import { LoginUserDto } from '@user/dto/login-user.dto';
 import { EmailDto } from '@user/dto/email.dto';
 import { ChangePasswordDto } from '@user/dto/change-password.dto';
 import { EmailVerificationDto } from '@user/dto/email-verification.dto';
+import { AuthService } from '@auth/auth.service';
+import { LocalAuthGuard } from '@auth/guards/local-auth.guard';
+import { RequestWithUser } from '@auth/interfaces/requestWithUser.interface';
+import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
+import { GoogleAuthGuard } from '@auth/guards/google-auth.guard';
+import { KakaoAuthGuard } from '@auth/guards/kakao-auth.guard';
+import { NaverAuthGuard } from '@auth/guards/naver-auth.guard';
 
 @ApiTags('Auth')
 @Controller('auth')
