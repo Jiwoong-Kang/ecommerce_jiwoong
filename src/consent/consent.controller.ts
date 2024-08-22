@@ -3,10 +3,9 @@ import { ConsentService } from './consent.service';
 import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
 import { RequestWithUser } from '@auth/interfaces/requestWithUser.interface';
 import { CreateConsentDto } from '@consent/dto/create-consent.dto';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Consent')
-@ApiBearerAuth()
 @Controller('consent')
 export class ConsentController {
   constructor(private readonly consentService: ConsentService) {}

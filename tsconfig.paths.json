@@ -14,6 +14,7 @@
       "@auth/*": ["./src/auth/*"],
       "@product/*": ["./src/product/*"],
       "@order/*": ["./src/order/*"],
+      "@profile/*": ["./src/profile/*"],
 
 
     }

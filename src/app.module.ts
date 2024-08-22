@@ -12,6 +12,7 @@ import { RedisModule } from '@redis/redis.module';
 import { AppController } from '@root/app.controller';
 import { AppService } from '@root/app.service';
 import { ConsentModule } from './consent/consent.module';
+import { ProfileModule } from './profile/profile.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { ConsentModule } from './consent/consent.module';
     EmailModule,
     RedisModule,
     ConsentModule,
+    ProfileModule,
   ],
   controllers: [AppController],
   providers: [AppService],

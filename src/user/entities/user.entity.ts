@@ -7,6 +7,7 @@ import { BaseEntity } from '@common/base.entity';
 import { Provider } from '@common/enums/provider.enum';
 import { Role } from '@common/enums/role.enum';
 import { Consent } from '@consent/entities/consent.entity';
+import { Profile } from '@profile/entities/profile.entity';
 
 @Entity()
 export class User extends BaseEntity {
@@ -49,6 +50,13 @@ export class User extends BaseEntity {
   })
   @JoinColumn()
   public consent: Consent;
+
+  @OneToOne(() => Profile, {
+    eager: true,
+    cascade: true,
+  })
+  @JoinColumn()
+  public profile: Profile;
 
   @BeforeInsert()
   async beforeSaveFunction() {
