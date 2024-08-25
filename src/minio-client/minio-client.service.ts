@@ -56,6 +56,12 @@ export class MinioClientService {
     const filePath = `${categoryName}/${user.id}/${filename}`;
 
     // 같은 이름이 존재할 시 삭제 로직
+    if (`${categoryName}/${user.id}`.includes(user.id)) {
+      await this.deleteFolderContents(
+        this.baseBucket,
+        `${categoryName}/${user.id}/`,
+      );
+    }
 
     // 파일 첨부
     this.client.putObject(
@@ -75,5 +81,23 @@ export class MinioClientService {
       },
     );
     return `http://${this.configService.get('MINIO_ENDPOINT')}:${this.configService.get('MINIO_PORT')}/${this.configService.get('MINIO_BUCKET')}/${filePath}`;
+  }
+
+  public async deleteFolderContents(bucketName, folderPath) {
+    const objectsList = [];
+    const stream = await this.client.listObjects(bucketName, folderPath, true);
+    for await (const obj of stream) {
+      objectsList.push(obj.name);
+    }
+
+    if (objectsList.length > 0) {
+      const deleteResult = await this.client.removeObjects(
+        bucketName,
+        objectsList,
+      );
+      console.log('Deleted objects', deleteResult);
+    } else {
+      console.log('No objects found to delete');
+    }
   }
 }

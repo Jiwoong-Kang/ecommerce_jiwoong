@@ -72,11 +72,11 @@ export class UserController {
           example: 'dnd0311@naver.com',
         },
 
-        password: {
-          type: 'string',
-          description: 'Password of the user',
-          example: 'password123@',
-        },
+        // password: {
+        //   type: 'string',
+        //   description: 'Password of the user',
+        //   example: 'password123@',
+        // },
       },
     },
   })
