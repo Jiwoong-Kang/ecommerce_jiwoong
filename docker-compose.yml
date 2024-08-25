@@ -15,3 +15,12 @@ services:
       - docker.env
     ports:
       - ${REDIS_PORT}:${REDIS_PORT}
+
+  ecommerce_minio:
+    image: docker.io/bitnami/minio:2022
+    env_file:
+      - docker.env
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    platform: linux/amd64
