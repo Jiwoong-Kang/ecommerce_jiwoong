@@ -83,6 +83,117 @@ export class MinioClientService {
     return `http://${this.configService.get('MINIO_ENDPOINT')}:${this.configService.get('MINIO_PORT')}/${this.configService.get('MINIO_BUCKET')}/${filePath}`;
   }
 
+  public async createProductImg(
+    file: BufferedFile,
+    categoryName1: string,
+    categoryName2: string,
+    baseBucket: string = this.baseBucket,
+  ) {
+    if (!(file.mimetype.includes('jpeg') || file.mimetype.includes('png'))) {
+      throw new HttpException(
+        'Error uploading product file type error',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    const temp_filename = Date.now().toString();
+    const hashedFileName = crypto
+      .createHash('md5')
+      .update(temp_filename)
+      .digest('hex');
+
+    const ext = file.originalname.substring(
+      file.originalname.lastIndexOf('.'),
+      file.originalname.length,
+    );
+
+    const metaData = {
+      'Content-Type': file.mimetype,
+      'X-Amz-Meta-Testing': 1234,
+    };
+
+    const filename = hashedFileName + ext;
+    const fileBuffer = file.buffer;
+    const filePath = `${categoryName1}/${categoryName2}/${filename}`;
+
+    this.client.putObject(
+      baseBucket,
+      filePath,
+      fileBuffer,
+      fileBuffer.length,
+      metaData,
+      function (err) {
+        console.log('+++++++++++++++++', err);
+        if (err) {
+          throw new HttpException(
+            'Error uploading processing product error',
+            HttpStatus.BAD_REQUEST,
+          );
+        }
+      },
+    );
+    return `http://${this.configService.get('MINIO_ENDPOINT')}:${this.configService.get('MINIO_PORT')}/${this.configService.get('MINIO_BUCKET')}/${filePath}`;
+  }
+
+  public async uploadProductImg(
+    id: string,
+    file: BufferedFile,
+    categoryName: string,
+    baseBucket: string = this.baseBucket,
+  ) {
+    if (!(file.mimetype.includes('jpeg') || file.mimetype.includes('png'))) {
+      throw new HttpException(
+        'Error uploading product file type error',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+
+    const temp_filename = Date.now().toString();
+    const hashedFileName = crypto
+      .createHash('md5')
+      .update(temp_filename)
+      .digest('hex');
+
+    const ext = file.originalname.substring(
+      file.originalname.lastIndexOf('.'),
+      file.originalname.length,
+    );
+
+    const metaData = {
+      'Content-Type': file.mimetype,
+      'X-Amz-Meta-Testing': 1234,
+    };
+
+    const filename = hashedFileName + ext;
+    const fileBuffer = file.buffer;
+    const filePath = `${categoryName}/${id}/${filename}`;
+
+    if (`${categoryName}/${id}`.includes(id)) {
+      await this.deleteFolderContents(
+        this.baseBucket,
+        `${categoryName}/${id}/`,
+      );
+    }
+
+    this.client.putObject(
+      baseBucket,
+      filePath,
+      fileBuffer,
+      fileBuffer.length,
+      metaData,
+      function (err) {
+        console.log('+++++++++++++++++', err);
+        if (err) {
+          throw new HttpException(
+            'Error uploading processing product error',
+            HttpStatus.BAD_REQUEST,
+          );
+        }
+      },
+    );
+    return `http://${this.configService.get('MINIO_ENDPOINT')}:${this.configService.get('MINIO_PORT')}/${this.configService.get('MINIO_BUCKET')}/${filePath}`;
+  }
+
   public async deleteFolderContents(bucketName, folderPath) {
     const objectsList = [];
     const stream = await this.client.listObjects(bucketName, folderPath, true);

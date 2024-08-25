@@ -85,7 +85,7 @@ export class UserService {
     const profileImg = await this.minioClientService.uploadProfileImg(
       user,
       image,
-      'profile',
+      'Profile',
     );
 
     return await this.userRepository.update(user.id, {

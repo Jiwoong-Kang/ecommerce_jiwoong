@@ -6,12 +6,15 @@ import { PageDto } from '@common/dtos/page.dto';
 import { PageMetaDto } from '@common/dtos/page-meta.dto';
 import { Product } from '@product/entities/product.entity';
 import { CreateProductDto } from '@product/dto/create-product.dto';
+import { MinioClientService } from '@root/minio-client/minio-client.service';
+import { BufferedFile } from '@root/minio-client/file.model';
 
 @Injectable()
 export class ProductService {
   constructor(
     @InjectRepository(Product)
     private readonly productRepository: Repository<Product>,
+    private readonly minioClientService: MinioClientService,
   ) {}
 
   async getProducts(pageOptionsDto: PageOptionsDto): Promise<PageDto<Product>> {
@@ -29,8 +32,16 @@ export class ProductService {
     return new PageDto(entities, pageMetaDto);
   }
 
-  async postProduct(createProductDto: CreateProductDto) {
-    const newProduct = await this.productRepository.create(createProductDto);
+  async postProduct(image?: BufferedFile, createProductDto?: CreateProductDto) {
+    const productImg = await this.minioClientService.createProductImg(
+      image,
+      'product',
+      createProductDto.category,
+    );
+    const newProduct = await this.productRepository.create({
+      productImg,
+      ...createProductDto,
+    });
     await this.productRepository.save(newProduct);
     return newProduct;
   }
@@ -59,8 +70,20 @@ export class ProductService {
     return 'Product deleted successfully.';
   }
 
-  async updateProductById(id: string, updateProductDto: CreateProductDto) {
-    await this.productRepository.update(id, updateProductDto);
+  async updateProductById(
+    id: string,
+    image?: BufferedFile,
+    updateProductDto?: CreateProductDto,
+  ) {
+    const productImg = await this.minioClientService.uploadProductImg(
+      id,
+      image,
+      'Product',
+    );
+    await this.productRepository.update(id, {
+      ...updateProductDto,
+      productImg,
+    });
     const updatedProduct = await this.productRepository.findOneBy({ id });
     if (updatedProduct) {
       return updatedProduct;
