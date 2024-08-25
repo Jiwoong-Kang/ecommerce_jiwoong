@@ -4,7 +4,6 @@ import { ConfigService } from '@nestjs/config';
 import { User } from '@user/entities/user.entity';
 import { BufferedFile } from '@root/minio-client/file.model';
 import * as crypto from 'crypto';
-import { metadata } from 'reflect-metadata/no-conflict';
 
 @Injectable()
 export class MinioClientService {
