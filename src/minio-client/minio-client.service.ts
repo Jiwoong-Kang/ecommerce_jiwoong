@@ -106,6 +106,7 @@ export class MinioClientService {
       file.originalname.lastIndexOf('.'),
       file.originalname.length,
     );
+    console.log(ext);
 
     const metaData = {
       'Content-Type': file.mimetype,

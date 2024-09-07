@@ -15,6 +15,7 @@
       "@product/*": ["./src/product/*"],
       "@order/*": ["./src/order/*"],
       "@profile/*": ["./src/profile/*"],
+      "@minio-client/*" : ["./src/minio-client/*"],
 
 
     }
