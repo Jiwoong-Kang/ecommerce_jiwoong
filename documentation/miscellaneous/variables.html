@@ -1,0 +1,1090 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ecommerce_jiwoong documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">ecommerce_jiwoong documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content miscellaneous-variables">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Miscellaneous</li>
+  <li class="breadcrumb-item">Variables</li>
+</ol>
+
+<section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <ul class="index-list">
+                        <li>
+                            <a href="#RoleGuard" title="src/auth/guards/role.guard.ts" ><b>RoleGuard</b>&nbsp;&nbsp;&nbsp;(src/.../role.guard.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#setupSwagger" title="src/config/swagger.document.ts" ><b>setupSwagger</b>&nbsp;&nbsp;&nbsp;(src/.../swagger.document.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#signupEmail" title="src/common/template/verificationEmail.ts" ><b>signupEmail</b>&nbsp;&nbsp;&nbsp;(src/.../verificationEmail.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#welcomeSignupEmail" title="src/common/template/welcomeSignup.ts" ><b>welcomeSignupEmail</b>&nbsp;&nbsp;&nbsp;(src/.../welcomeSignup.ts)</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <h3>src/auth/guards/role.guard.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="RoleGuard"></a>
+                    <span class="name">
+                        <span ><b>RoleGuard</b></span>
+                        <a href="#RoleGuard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(role: Role): Type&lt;CanActivate&gt; &#x3D;&gt; {
+  class RoleGuardMixin extends JwtAuthGuard {
+    async canActivate(context: ExecutionContext) {
+      await super.canActivate(context);
+
+      const req &#x3D; context.switchToHttp().getRequest&lt;RequestWithUser&gt;();
+      const user &#x3D; req.user;
+      return user?.roles.includes(role);
+    }
+  }
+  return mixin(RoleGuardMixin);
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/config/swagger.document.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupSwagger"></a>
+                    <span class="name">
+                        <span ><b>setupSwagger</b></span>
+                        <a href="#setupSwagger"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(app: INestApplication) &#x3D;&gt; {
+  const config &#x3D; new DocumentBuilder()
+    .setTitle(&#x27;Jiwoong api&#x27;)
+    .setDescription(&#x27;Jiwoong open api&#x27;)
+    .addBearerAuth()
+    .setVersion(&#x27;1.0&#x27;)
+    .addTag(&#x27;Jiwoong&#x27;)
+    .build();
+  const document &#x3D; SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup(&#x27;/api-docs&#x27;, app, document);
+}</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/common/template/verificationEmail.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="signupEmail"></a>
+                    <span class="name">
+                        <span ><b>signupEmail</b></span>
+                        <a href="#signupEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(randomNo) &#x3D;&gt; &#x60;
+  &lt;!DOCTYPE html&gt;
+  &lt;html lang&#x3D;&quot;ko&quot;&gt;
+    &lt;head&gt;
+      &lt;meta charset&#x3D;&quot;UTF-8&quot;&gt;
+      &lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;
+      &lt;title&gt;Jiwoong World 회원가입 인증&lt;/title&gt;
+      &lt;style&gt;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            font-size: 24px;
+            text-align: center;
+            color: #007bff;
+        }
+        .content {
+            margin-top: 20px;
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;div class&#x3D;&quot;container&quot;&gt;
+          &lt;div class&#x3D;&quot;header&quot;&gt;Jiwoong World 회원가입 인증&lt;/div&gt;
+          &lt;div class&#x3D;&quot;content&quot;&gt;
+              &lt;p&gt;안녕하세요,&lt;/p&gt;
+              &lt;p&gt;Jiwoong World 에 가입해 주셔서 감사합니다. 아래의 인증 번호를 회원가입 페이지에 입력하여 회원가입 절차를 완료해 주세요.&lt;/p&gt;
+              &lt;h1&gt;&lt;strong&gt; 인증 번호: ${randomNo} &lt;/strong&gt;&lt;/h1&gt;
+              &lt;p&gt;이 번호는 귀하의 이메일 주소를 인증하는 데 사용됩니다.&lt;/p&gt;
+
+              &lt;p&gt;만약 인증 번호를 요청하지 않았다면, 이 메일을 무시해 주세요.&lt;/p&gt;
+          &lt;/div&gt;
+          &lt;div class&#x3D;&quot;footer&quot;&gt;
+              &lt;p&gt;Jiwoong World 팀 드림&lt;/p&gt;
+              &lt;p&gt;궁금하신 사항이 있으시면 언제든지 저희 고객지원 센터로 문의해 주세요.&lt;/p&gt;
+          &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/body&gt;
+  &lt;/html&gt;
+
+&#x60;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+    <h3>src/common/template/welcomeSignup.ts</h3>
+    <section data-compodoc="block-properties">
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="welcomeSignupEmail"></a>
+                    <span class="name">
+                        <span ><b>welcomeSignupEmail</b></span>
+                        <a href="#welcomeSignupEmail"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>(email) &#x3D;&gt; &#x60;
+&lt;!DOCTYPE html&gt;
+&lt;html xmlns:v&#x3D;&quot;urn:schemas-microsoft-com:vml&quot; xmlns:o&#x3D;&quot;urn:schemas-microsoft-com:office:office&quot; lang&#x3D;&quot;en&quot;&gt;
+
+&lt;head&gt;
+\t&lt;title&gt;&lt;/title&gt;
+\t&lt;meta http-equiv&#x3D;&quot;Content-Type&quot; content&#x3D;&quot;text/html; charset&#x3D;utf-8&quot;&gt;
+\t&lt;meta name&#x3D;&quot;viewport&quot; content&#x3D;&quot;width&#x3D;device-width, initial-scale&#x3D;1.0&quot;&gt;&lt;!--[if mso]&gt;&lt;xml&gt;&lt;o:OfficeDocumentSettings&gt;&lt;o:PixelsPerInch&gt;96&lt;/o:PixelsPerInch&gt;&lt;o:AllowPNG/&gt;&lt;/o:OfficeDocumentSettings&gt;&lt;/xml&gt;&lt;![endif]--&gt;
+\t&lt;style&gt;
+\t\t* {
+\t\t\tbox-sizing: border-box;
+\t\t}
+
+\t\tbody {
+\t\t\tmargin: 0;
+\t\t\tpadding: 0;
+\t\t}
+
+\t\ta[x-apple-data-detectors] {
+\t\t\tcolor: inherit !important;
+\t\t\ttext-decoration: inherit !important;
+\t\t}
+
+\t\t#MessageViewBody a {
+\t\t\tcolor: inherit;
+\t\t\ttext-decoration: none;
+\t\t}
+
+\t\tp {
+\t\t\tline-height: inherit
+\t\t}
+
+\t\t.desktop_hide,
+\t\t.desktop_hide table {
+\t\t\tmso-hide: all;
+\t\t\tdisplay: none;
+\t\t\tmax-height: 0px;
+\t\t\toverflow: hidden;
+\t\t}
+
+\t\t.image_block img+div {
+\t\t\tdisplay: none;
+\t\t}
+
+\t\tsup,
+\t\tsub {
+\t\t\tline-height: 0;
+\t\t\tfont-size: 75%;
+\t\t}
+
+\t\t@media (max-width:670px) {
+
+\t\t\t.desktop_hide table.icons-inner,
+\t\t\t.social_block.desktop_hide .social-table {
+\t\t\t\tdisplay: inline-block !important;
+\t\t\t}
+
+\t\t\t.icons-inner {
+\t\t\t\ttext-align: center;
+\t\t\t}
+
+\t\t\t.icons-inner td {
+\t\t\t\tmargin: 0 auto;
+\t\t\t}
+
+\t\t\t.mobile_hide {
+\t\t\t\tdisplay: none;
+\t\t\t}
+
+\t\t\t.row-content {
+\t\t\t\twidth: 100% !important;
+\t\t\t}
+
+\t\t\t.stack .column {
+\t\t\t\twidth: 100%;
+\t\t\t\tdisplay: block;
+\t\t\t}
+
+\t\t\t.mobile_hide {
+\t\t\t\tmin-height: 0;
+\t\t\t\tmax-height: 0;
+\t\t\t\tmax-width: 0;
+\t\t\t\toverflow: hidden;
+\t\t\t\tfont-size: 0px;
+\t\t\t}
+
+\t\t\t.desktop_hide,
+\t\t\t.desktop_hide table {
+\t\t\t\tdisplay: table !important;
+\t\t\t\tmax-height: none !important;
+\t\t\t}
+
+\t\t\t.row-3 .column-1 .block-3.spacer_block {
+\t\t\t\theight: 20px !important;
+\t\t\t}
+
+\t\t\t.row-3 .column-1 .block-2.paragraph_block td.pad&gt;div {
+\t\t\t\ttext-align: center !important;
+\t\t\t\tfont-size: 16px !important;
+\t\t\t}
+
+\t\t\t.row-3 .column-2 .block-1.paragraph_block td.pad&gt;div {
+\t\t\t\ttext-align: center !important;
+\t\t\t\tfont-size: 14px !important;
+\t\t\t}
+
+\t\t\t.row-3 .column-1 .block-1.paragraph_block td.pad,
+\t\t\t.row-3 .column-2 .block-1.paragraph_block td.pad {
+\t\t\t\tpadding: 0 !important;
+\t\t\t}
+
+\t\t\t.row-4 .column-1 .block-3.paragraph_block td.pad&gt;div,
+\t\t\t.row-7 .column-1 .block-3.paragraph_block td.pad&gt;div {
+\t\t\t\ttext-align: center !important;
+\t\t\t}
+
+\t\t\t.row-4 .column-1 .block-3.paragraph_block td.pad,
+\t\t\t.row-7 .column-1 .block-3.paragraph_block td.pad {
+\t\t\t\tpadding: 5px !important;
+\t\t\t}
+
+\t\t\t.row-3 .column-1 .block-1.paragraph_block td.pad&gt;div {
+\t\t\t\ttext-align: center !important;
+\t\t\t\tfont-size: 36px !important;
+\t\t\t}
+
+\t\t\t.row-5 .column-1 .block-3.paragraph_block td.pad&gt;div {
+\t\t\t\tfont-size: 15px !important;
+\t\t\t}
+
+\t\t\t.row-7 .column-1 .block-2.paragraph_block td.pad&gt;div {
+\t\t\t\ttext-align: center !important;
+\t\t\t\tfont-size: 32px !important;
+\t\t\t}
+
+\t\t\t.row-7 .column-1 .block-2.paragraph_block td.pad {
+\t\t\t\tpadding: 5px 5px 0 !important;
+\t\t\t}
+
+\t\t\t.row-9 .column-1 .block-1.spacer_block {
+\t\t\t\theight: 40px !important;
+\t\t\t}
+
+\t\t\t.row-3 .column-1 {
+\t\t\t\tpadding: 30px 30px 0 !important;
+\t\t\t}
+
+\t\t\t.row-3 .column-2 {
+\t\t\t\tpadding: 0 30px !important;
+\t\t\t}
+\t\t}
+\t&lt;/style&gt;&lt;!--[if mso ]&gt;&lt;style&gt;sup, sub { font-size: 100% !important; } sup { mso-text-raise:10% } sub { mso-text-raise:-10% }&lt;/style&gt; &lt;![endif]--&gt;&lt;!--[if true]&gt;&lt;style&gt;.forceBgColor{background-color: white !important}&lt;/style&gt;&lt;![endif]--&gt;
+&lt;/head&gt;
+
+&lt;body class&#x3D;&quot;body forceBgColor&quot; style&#x3D;&quot;background-color: transparent; margin: 0; padding: 0; -webkit-text-size-adjust: none; text-size-adjust: none;&quot;&gt;
+\t&lt;table class&#x3D;&quot;nl-container&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: transparent; background-repeat: no-repeat; background-image: none; background-position: top left; background-size: auto;&quot;&gt;
+\t\t&lt;tbody&gt;
+\t\t\t&lt;tr&gt;
+&lt;h1&gt;Welcome to ${email}&lt;/h1&gt; 
+&lt;!--$사인이 붙으면서 email을 받아서 직접 사용할 수 있게 됐다.--&gt;
+\t\t\t\t&lt;td&gt;
+\t\t\t\t\t&lt;table class&#x3D;&quot;row row-1&quot; align&#x3D;&quot;center&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-size: auto;&quot;&gt;
+\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t&lt;td&gt;
+\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;row-content stack&quot; align&#x3D;&quot;center&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; background-size: auto; background-color: #ffffff; width: 650px; margin: 0 auto;&quot; width&#x3D;&quot;650&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;column column-1&quot; width&#x3D;&quot;100%&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;image_block block-1&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;width:100%;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div class&#x3D;&quot;alignment&quot; align&#x3D;&quot;center&quot; style&#x3D;&quot;line-height:10px&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;max-width: 650px;&quot;&gt;&lt;img src&#x3D;&quot;https://d1oco4z2z1fhwp.cloudfront.net/templates/default/8746/BEE_May20_MarketingAgency_DashboardMetrics_v01.png&quot; style&#x3D;&quot;display: block; height: auto; border: 0; width: 100%;&quot; width&#x3D;&quot;650&quot; height&#x3D;&quot;auto&quot;&gt;&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t&lt;table class&#x3D;&quot;row row-2&quot; align&#x3D;&quot;center&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-size: auto;&quot;&gt;
+\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t&lt;td&gt;
+\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;row-content stack&quot; align&#x3D;&quot;center&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; background-size: auto; background-color: #f6f5f1; width: 650px; margin: 0 auto;&quot; width&#x3D;&quot;650&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;column column-1&quot; width&#x3D;&quot;100%&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;image_block block-1&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;width:100%;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div class&#x3D;&quot;alignment&quot; align&#x3D;&quot;center&quot; style&#x3D;&quot;line-height:10px&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;max-width: 650px;&quot;&gt;&lt;img src&#x3D;&quot;https://d1oco4z2z1fhwp.cloudfront.net/templates/default/8746/BEE_May20_MarketingAgency_Invoice_v01.jpg&quot; style&#x3D;&quot;display: block; height: auto; border: 0; width: 100%;&quot; width&#x3D;&quot;650&quot; height&#x3D;&quot;auto&quot;&gt;&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t&lt;table class&#x3D;&quot;row row-3&quot; align&#x3D;&quot;center&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t&lt;td&gt;
+\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;row-content stack&quot; align&#x3D;&quot;center&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-repeat: no-repeat; border-radius: 0; color: #000000; background-size: auto; background-color: #007c86; background-image: url(&#x27;https://d1oco4z2z1fhwp.cloudfront.net/templates/default/8746/BEE_May20_MarketingAgency_Invoice_v02.jpg&#x27;); width: 650px; margin: 0 auto;&quot; width&#x3D;&quot;650&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;column column-1&quot; width&#x3D;&quot;50%&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 50px; padding-left: 50px; padding-top: 60px; vertical-align: bottom; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;paragraph_block block-1&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;padding-bottom:15px;padding-left:5px;padding-right:5px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;color:#ffffff;font-family:TimesNewRoman, &#x27;Times New Roman&#x27;, Times, Beskerville, Georgia, serif;font-size:70px;font-weight:400;letter-spacing:-2px;line-height:120%;text-align:left;mso-line-height-alt:84px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;p style&#x3D;&quot;margin: 0; word-break: break-word;&quot;&gt;&lt;em&gt;&lt;span style&#x3D;&quot;word-break: break-word; color: #ffffff;&quot;&gt;Invoice&lt;/span&gt;&lt;/em&gt;&lt;/p&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;paragraph_block block-2&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;color:#ffffff;direction:ltr;font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:left;mso-line-height-alt:21.599999999999998px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;p style&#x3D;&quot;margin: 0;&quot;&gt;#1234&lt;br&gt;Date: 07/01/2024&lt;/p&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div class&#x3D;&quot;spacer_block block-3&quot; style&#x3D;&quot;height:30px;line-height:30px;font-size:1px;&quot;&gt;&amp;#8202;&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;column column-2&quot; width&#x3D;&quot;50%&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 50px; padding-right: 50px; padding-top: 50px; vertical-align: bottom; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;paragraph_block block-1&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;color:#ffffff;direction:ltr;font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif;font-size:18px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:right;mso-line-height-alt:21.599999999999998px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;p style&#x3D;&quot;margin: 0;&quot;&gt;Bill to:&lt;br&gt;Jane Doe&lt;br&gt;Company&lt;br&gt;123 Street Adress&lt;br&gt;janedoe@example.com&lt;/p&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div class&#x3D;&quot;spacer_block block-2&quot; style&#x3D;&quot;height:30px;line-height:30px;font-size:1px;&quot;&gt;&amp;#8202;&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t&lt;table class&#x3D;&quot;row row-4&quot; align&#x3D;&quot;center&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-size: auto;&quot;&gt;
+\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t&lt;td&gt;
+\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;row-content stack&quot; align&#x3D;&quot;center&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; background-size: auto; background-color: #f6f5f1; border-left: 30px solid transparent; border-right: 30px solid transparent; border-top: 30px solid transparent; width: 650px; margin: 0 auto;&quot; width&#x3D;&quot;650&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;column column-1&quot; width&#x3D;&quot;100%&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; background-color: #ffffff; padding-bottom: 30px; padding-top: 30px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;heading_block block-1&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;text-align:center;width:100%;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;h1 style&#x3D;&quot;margin: 0; color: #222222; direction: ltr; font-family: &#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 400; letter-spacing: -1px; line-height: 120%; text-align: center; margin-top: 0; margin-bottom: 0; mso-line-height-alt: 28.799999999999997px;&quot;&gt;&lt;span class&#x3D;&quot;tinyMce-placeholder&quot; style&#x3D;&quot;word-break: break-word;&quot;&gt;Amount due:&lt;/span&gt;&lt;/h1&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;paragraph_block block-2&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;color:#222222;direction:ltr;font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif;font-size:40px;font-weight:700;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:48px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;p style&#x3D;&quot;margin: 0;&quot;&gt;&lt;strong&gt;$565&lt;/strong&gt;&lt;/p&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;paragraph_block block-3&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;padding-top:5px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;color:#222222;font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;line-height:150%;text-align:center;mso-line-height-alt:21px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;p style&#x3D;&quot;margin: 0; word-break: break-word;&quot;&gt;Due on 07/15/2024.&lt;/p&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t&lt;table class&#x3D;&quot;row row-5&quot; align&#x3D;&quot;center&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-size: auto;&quot;&gt;
+\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t&lt;td&gt;
+\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;row-content stack&quot; align&#x3D;&quot;center&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f6f5f1; border-radius: 0; color: #000000; background-size: auto; border-left: 30px solid transparent; border-right: 30px solid transparent; width: 650px; margin: 0 auto;&quot; width&#x3D;&quot;650&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;column column-1&quot; width&#x3D;&quot;100%&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;button_block block-1&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;25&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div class&#x3D;&quot;alignment&quot; align&#x3D;&quot;center&quot;&gt;&lt;!--[if mso]&gt;
+&lt;v:roundrect xmlns:v&#x3D;&quot;urn:schemas-microsoft-com:vml&quot; xmlns:w&#x3D;&quot;urn:schemas-microsoft-com:office:word&quot; href&#x3D;&quot;http://www.example.com&quot; style&#x3D;&quot;height:40px;width:203px;v-text-anchor:middle;&quot; arcsize&#x3D;&quot;25%&quot; strokeweight&#x3D;&quot;0.75pt&quot; strokecolor&#x3D;&quot;#222222&quot; fillcolor&#x3D;&quot;#f2c9c4&quot;&gt;
+&lt;w:anchorlock/&gt;
+&lt;v:textbox inset&#x3D;&quot;0px,0px,0px,0px&quot;&gt;
+&lt;center dir&#x3D;&quot;false&quot; style&#x3D;&quot;color:#222222;font-family:Arial, sans-serif;font-size:14px&quot;&gt;
+&lt;![endif]--&gt;&lt;a href&#x3D;&quot;http://www.example.com&quot; target&#x3D;&quot;_blank&quot; style&#x3D;&quot;background-color:#f2c9c4;border-bottom:1px solid #222222;border-left:1px solid #222222;border-radius:10px;border-right:1px solid #222222;border-top:1px solid #222222;color:#222222;display:inline-block;font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;mso-border-alt:none;padding-bottom:5px;padding-top:5px;text-align:center;text-decoration:none;width:auto;word-break:keep-all;&quot;&gt;&lt;span style&#x3D;&quot;word-break: break-word; padding-left: 30px; padding-right: 30px; font-size: 14px; display: inline-block; letter-spacing: 2px;&quot;&gt;&lt;span style&#x3D;&quot;margin: 0; word-break: break-word; line-height: 28px;&quot;&gt;REVIEW AND PAY&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;!--[if mso]&gt;&lt;/center&gt;&lt;/v:textbox&gt;&lt;/v:roundrect&gt;&lt;![endif]--&gt;&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;paragraph_block block-2&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;color:#222222;font-family:TimesNewRoman, &#x27;Times New Roman&#x27;, Times, Beskerville, Georgia, serif;font-size:24px;font-weight:400;letter-spacing:-1px;line-height:120%;text-align:left;mso-line-height-alt:28.799999999999997px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;p style&#x3D;&quot;margin: 0; word-break: break-word;&quot;&gt;Dear &lt;em&gt;Jane&lt;/em&gt;,&lt;/p&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;paragraph_block block-3&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;padding-top:10px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;color:#222222;direction:ltr;font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif;font-size:16px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:left;mso-line-height-alt:19.2px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;p style&#x3D;&quot;margin: 0;&quot;&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.&lt;br&gt;&lt;br&gt;Thank you,&lt;br&gt;Your name&lt;/p&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t&lt;table class&#x3D;&quot;row row-6&quot; align&#x3D;&quot;center&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t&lt;td&gt;
+\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;row-content stack&quot; align&#x3D;&quot;center&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f6f5f1; border-radius: 0; color: #000000; border-left: 20px solid transparent; border-right: 20px solid transparent; border-top: 20px solid transparent; width: 650px; margin: 0 auto;&quot; width&#x3D;&quot;650&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;column column-1&quot; width&#x3D;&quot;100%&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 30px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;table_block mobile_hide block-1&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;10&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-collapse: collapse; width: 100%; table-layout: fixed; direction: ltr; background-color: #ffffff; font-family: &#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-weight: 400; color: #222222; text-align: right; letter-spacing: 0px; word-break: break-all;&quot; width&#x3D;&quot;100%&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;thead style&#x3D;&quot;vertical-align: top; background-color: #eddab2; color: #222222; font-size: 16px; line-height: 120%; text-align: right;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;th width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; font-weight: 700; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&lt;strong&gt;Service&lt;/strong&gt;&lt;/th&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;th width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; font-weight: 700; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Qty&lt;/th&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;th width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; font-weight: 700; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Price&lt;/th&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;th width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; font-weight: 700; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Total&lt;/th&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/thead&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tbody style&#x3D;&quot;vertical-align: top; font-size: 14px; line-height: 120%;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr style&#x3D;&quot;background-color:#f9f9f9;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;SEO&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;1&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Website Design&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;1&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr style&#x3D;&quot;background-color:#f9f9f9;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Social Media&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;1&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Content&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;1&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr style&#x3D;&quot;background-color:#f9f9f9;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;PPC Ads&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;1&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr style&#x3D;&quot;background-color:#f9f9f9;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Subtotal&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$500.00&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Taxes (%)&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$65.00&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr style&#x3D;&quot;background-color:#f9f9f9;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&lt;strong&gt;GRAND TOTAL&lt;/strong&gt;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&lt;strong&gt;$565.00&lt;/strong&gt;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;table_block desktop_hide block-2&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;10&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; mso-hide: all; display: none; max-height: 0; overflow: hidden;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; mso-hide: all; display: none; max-height: 0; overflow: hidden; border-collapse: collapse; width: 100%; table-layout: fixed; direction: ltr; background-color: #ffffff; font-family: &#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif; font-weight: 400; color: #222222; text-align: right; letter-spacing: 0px; word-break: break-all;&quot; width&#x3D;&quot;100%&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;thead style&#x3D;&quot;vertical-align: top; background-color: #eddab2; color: #222222; font-size: 11px; line-height: 120%; text-align: right;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;th width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; font-weight: 700; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&lt;strong&gt;Service&lt;/strong&gt;&lt;/th&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;th width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; font-weight: 700; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Qty&lt;/th&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;th width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; font-weight: 700; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Price&lt;/th&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;th width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; font-weight: 700; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Total&lt;/th&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/thead&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tbody style&#x3D;&quot;vertical-align: top; font-size: 11px; line-height: 120%;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr style&#x3D;&quot;background-color:#f9f9f9;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;SEO&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;1&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Website Design&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;1&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr style&#x3D;&quot;background-color:#f9f9f9;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Social Media&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;1&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Content&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;1&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr style&#x3D;&quot;background-color:#f9f9f9;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;PPC Ads&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;1&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$100&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr style&#x3D;&quot;background-color:#f9f9f9;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Subtotal&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$500.00&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;Taxes (%)&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;$65.00&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr style&#x3D;&quot;background-color:#f9f9f9;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&amp;#8203;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&lt;strong&gt;GRAND TOTAL&lt;/strong&gt;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td width&#x3D;&quot;25%&quot; style&#x3D;&quot;padding: 10px; word-break: break-word; border-top: 1px solid transparent; border-right: 1px solid transparent; border-bottom: 1px solid transparent; border-left: 1px solid transparent;&quot;&gt;&lt;strong&gt;$565.00&lt;/strong&gt;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;button_block block-3&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;25&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div class&#x3D;&quot;alignment&quot; align&#x3D;&quot;center&quot;&gt;&lt;!--[if mso]&gt;
+&lt;v:roundrect xmlns:v&#x3D;&quot;urn:schemas-microsoft-com:vml&quot; xmlns:w&#x3D;&quot;urn:schemas-microsoft-com:office:word&quot; href&#x3D;&quot;http://www.example.com&quot; style&#x3D;&quot;height:38px;width:232px;v-text-anchor:middle;&quot; arcsize&#x3D;&quot;27%&quot; stroke&#x3D;&quot;false&quot; fillcolor&#x3D;&quot;#222222&quot;&gt;
+&lt;w:anchorlock/&gt;
+&lt;v:textbox inset&#x3D;&quot;0px,0px,0px,0px&quot;&gt;
+&lt;center dir&#x3D;&quot;false&quot; style&#x3D;&quot;color:#ffffff;font-family:Arial, sans-serif;font-size:14px&quot;&gt;
+&lt;![endif]--&gt;&lt;a href&#x3D;&quot;http://www.example.com&quot; target&#x3D;&quot;_blank&quot; style&#x3D;&quot;background-color:#222222;border-bottom:0px solid transparent;border-left:0px solid transparent;border-radius:10px;border-right:0px solid transparent;border-top:0px solid transparent;color:#ffffff;display:inline-block;font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;mso-border-alt:none;padding-bottom:5px;padding-top:5px;text-align:center;text-decoration:none;width:auto;word-break:keep-all;&quot;&gt;&lt;span style&#x3D;&quot;word-break: break-word; padding-left: 30px; padding-right: 30px; font-size: 14px; display: inline-block; letter-spacing: 2px;&quot;&gt;&lt;span style&#x3D;&quot;margin: 0; word-break: break-word; line-height: 28px;&quot;&gt;DOWNLOAD INVOICE&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;!--[if mso]&gt;&lt;/center&gt;&lt;/v:textbox&gt;&lt;/v:roundrect&gt;&lt;![endif]--&gt;&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t&lt;table class&#x3D;&quot;row row-7&quot; align&#x3D;&quot;center&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t&lt;td&gt;
+\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;row-content stack&quot; align&#x3D;&quot;center&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-repeat: no-repeat; background-color: #f6f5f1; border-radius: 0; color: #000000; background-image: url(&#x27;https://d1oco4z2z1fhwp.cloudfront.net/templates/default/8746/BG-yellow_2.jpg&#x27;); background-size: cover; width: 650px; margin: 0 auto;&quot; width&#x3D;&quot;650&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;column column-1&quot; width&#x3D;&quot;100%&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 40px; padding-left: 15px; padding-right: 15px; padding-top: 40px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;image_block block-1&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;width:100%;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div class&#x3D;&quot;alignment&quot; align&#x3D;&quot;center&quot; style&#x3D;&quot;line-height:10px&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;max-width: 28px;&quot;&gt;&lt;img src&#x3D;&quot;https://d1oco4z2z1fhwp.cloudfront.net/templates/default/8746/Flower-green_1.png&quot; style&#x3D;&quot;display: block; height: auto; border: 0; width: 100%;&quot; width&#x3D;&quot;28&quot; height&#x3D;&quot;auto&quot;&gt;&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;paragraph_block block-2&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;padding-left:25px;padding-right:25px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;color:#222222;font-family:TimesNewRoman, &#x27;Times New Roman&#x27;, Times, Beskerville, Georgia, serif;font-size:38px;font-weight:400;letter-spacing:-1px;line-height:120%;text-align:center;mso-line-height-alt:45.6px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;p style&#x3D;&quot;margin: 0; word-break: break-word;&quot;&gt;Have&lt;em&gt; questions?&lt;/em&gt;&lt;/p&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;paragraph_block block-3&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;padding-bottom:5px;padding-left:25px;padding-right:25px;padding-top:5px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;color:#222222;font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif;font-size:15px;font-weight:400;line-height:150%;text-align:center;mso-line-height-alt:22.5px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;p style&#x3D;&quot;margin: 0; word-break: break-word;&quot;&gt;We have answers. Get in touch with us via email, phone or support chat.&lt;/p&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;button_block block-4&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;padding-top:10px;text-align:center;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div class&#x3D;&quot;alignment&quot; align&#x3D;&quot;center&quot;&gt;&lt;!--[if mso]&gt;
+&lt;v:roundrect xmlns:v&#x3D;&quot;urn:schemas-microsoft-com:vml&quot; xmlns:w&#x3D;&quot;urn:schemas-microsoft-com:office:word&quot; href&#x3D;&quot;http://www.example.com&quot; style&#x3D;&quot;height:38px;width:181px;v-text-anchor:middle;&quot; arcsize&#x3D;&quot;27%&quot; stroke&#x3D;&quot;false&quot; fillcolor&#x3D;&quot;#222222&quot;&gt;
+&lt;w:anchorlock/&gt;
+&lt;v:textbox inset&#x3D;&quot;0px,0px,0px,0px&quot;&gt;
+&lt;center dir&#x3D;&quot;false&quot; style&#x3D;&quot;color:#ffffff;font-family:Arial, sans-serif;font-size:14px&quot;&gt;
+&lt;![endif]--&gt;&lt;a href&#x3D;&quot;http://www.example.com&quot; target&#x3D;&quot;_blank&quot; style&#x3D;&quot;background-color:#222222;border-bottom:0px solid transparent;border-left:0px solid transparent;border-radius:10px;border-right:0px solid transparent;border-top:0px solid transparent;color:#ffffff;display:inline-block;font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;mso-border-alt:none;padding-bottom:5px;padding-top:5px;text-align:center;text-decoration:none;width:auto;word-break:keep-all;&quot;&gt;&lt;span style&#x3D;&quot;word-break: break-word; padding-left: 30px; padding-right: 30px; font-size: 14px; display: inline-block; letter-spacing: 2px;&quot;&gt;&lt;span style&#x3D;&quot;margin: 0; word-break: break-word; line-height: 28px;&quot;&gt;GET IN TOUCH&lt;/span&gt;&lt;/span&gt;&lt;/a&gt;&lt;!--[if mso]&gt;&lt;/center&gt;&lt;/v:textbox&gt;&lt;/v:roundrect&gt;&lt;![endif]--&gt;&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t&lt;table class&#x3D;&quot;row row-8&quot; align&#x3D;&quot;center&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-size: auto;&quot;&gt;
+\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t&lt;td&gt;
+\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;row-content stack&quot; align&#x3D;&quot;center&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; border-radius: 0; color: #000000; background-size: auto; background-color: #f6f5f1; width: 650px; margin: 0 auto;&quot; width&#x3D;&quot;650&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;column column-1&quot; width&#x3D;&quot;100%&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;image_block block-1&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;width:100%;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div class&#x3D;&quot;alignment&quot; align&#x3D;&quot;center&quot; style&#x3D;&quot;line-height:10px&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;max-width: 650px;&quot;&gt;&lt;img src&#x3D;&quot;https://d1oco4z2z1fhwp.cloudfront.net/templates/default/8746/BEE_May20_MarketingAgency_Invoice_v01.jpg&quot; style&#x3D;&quot;display: block; height: auto; border: 0; width: 100%;&quot; width&#x3D;&quot;650&quot; height&#x3D;&quot;auto&quot;&gt;&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t&lt;table class&#x3D;&quot;row row-9&quot; align&#x3D;&quot;center&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #FFFFFF;&quot;&gt;
+\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t&lt;td&gt;
+\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;row-content stack&quot; align&#x3D;&quot;center&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #007c86; border-radius: 0; color: #000000; width: 650px; margin: 0 auto;&quot; width&#x3D;&quot;650&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;column column-1&quot; width&#x3D;&quot;100%&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 15px; padding-left: 20px; padding-right: 20px; padding-top: 15px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div class&#x3D;&quot;spacer_block block-1&quot; style&#x3D;&quot;height:40px;line-height:40px;font-size:1px;&quot;&gt;&amp;#8202;&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;image_block block-2&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;width:100%;padding-right:0px;padding-left:0px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div class&#x3D;&quot;alignment&quot; align&#x3D;&quot;center&quot; style&#x3D;&quot;line-height:10px&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;max-width: 91.5px;&quot;&gt;&lt;img src&#x3D;&quot;https://d1oco4z2z1fhwp.cloudfront.net/templates/default/8746/MC-logo-white.png&quot; style&#x3D;&quot;display: block; height: auto; border: 0; width: 100%;&quot; width&#x3D;&quot;91.5&quot; height&#x3D;&quot;auto&quot;&gt;&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;paragraph_block block-3&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;padding-bottom:30px;padding-left:10px;padding-right:10px;padding-top:20px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;color:#ffffff;font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif;font-size:12px;letter-spacing:2px;line-height:120%;text-align:center;mso-line-height-alt:14.399999999999999px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;p style&#x3D;&quot;margin: 0; word-break: break-word;&quot;&gt;MAILCOMET MARKETING AGENCY&lt;/p&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;social_block block-4&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;padding-bottom:10px;text-align:center;padding-right:0px;padding-left:0px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div class&#x3D;&quot;alignment&quot; align&#x3D;&quot;center&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;social-table&quot; width&#x3D;&quot;168px&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td style&#x3D;&quot;padding:0 5px 0 5px;&quot;&gt;&lt;a href&#x3D;&quot;https://www.instagram.com&quot; target&#x3D;&quot;_blank&quot;&gt;&lt;img src&#x3D;&quot;https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/t-outline-circle-white/instagram@2x.png&quot; width&#x3D;&quot;32&quot; height&#x3D;&quot;auto&quot; alt&#x3D;&quot;Instagram&quot; title&#x3D;&quot;Instagram&quot; style&#x3D;&quot;display: block; height: auto; border: 0;&quot;&gt;&lt;/a&gt;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td style&#x3D;&quot;padding:0 5px 0 5px;&quot;&gt;&lt;a href&#x3D;&quot;https://www.facebook.com&quot; target&#x3D;&quot;_blank&quot;&gt;&lt;img src&#x3D;&quot;https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/t-outline-circle-white/facebook@2x.png&quot; width&#x3D;&quot;32&quot; height&#x3D;&quot;auto&quot; alt&#x3D;&quot;Facebook&quot; title&#x3D;&quot;Facebook&quot; style&#x3D;&quot;display: block; height: auto; border: 0;&quot;&gt;&lt;/a&gt;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td style&#x3D;&quot;padding:0 5px 0 5px;&quot;&gt;&lt;a href&#x3D;&quot;https://www.pinterest.com/&quot; target&#x3D;&quot;_blank&quot;&gt;&lt;img src&#x3D;&quot;https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/t-outline-circle-white/pinterest@2x.png&quot; width&#x3D;&quot;32&quot; height&#x3D;&quot;auto&quot; alt&#x3D;&quot;Pinterest&quot; title&#x3D;&quot;Pinterest&quot; style&#x3D;&quot;display: block; height: auto; border: 0;&quot;&gt;&lt;/a&gt;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td style&#x3D;&quot;padding:0 5px 0 5px;&quot;&gt;&lt;a href&#x3D;&quot;https://www.tiktok.com&quot; target&#x3D;&quot;_blank&quot;&gt;&lt;img src&#x3D;&quot;https://app-rsrc.getbee.io/public/resources/social-networks-icon-sets/t-outline-circle-white/tiktok@2x.png&quot; width&#x3D;&quot;32&quot; height&#x3D;&quot;auto&quot; alt&#x3D;&quot;TikTok&quot; title&#x3D;&quot;TikTok&quot; style&#x3D;&quot;display: block; height: auto; border: 0;&quot;&gt;&lt;/a&gt;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;paragraph_block block-5&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;10&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;color:#ffffff;direction:ltr;font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:16.8px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;p style&#x3D;&quot;margin: 0;&quot;&gt;1234 Example Street&lt;br&gt;City, State 01234, Country&lt;/p&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;paragraph_block block-6&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;10&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; word-break: break-word;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div style&#x3D;&quot;color:#ffffff;direction:ltr;font-family:&#x27;Helvetica Neue&#x27;, Helvetica, Arial, sans-serif;font-size:14px;font-weight:400;letter-spacing:0px;line-height:120%;text-align:center;mso-line-height-alt:16.8px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;p style&#x3D;&quot;margin: 0;&quot;&gt;&lt;a href&#x3D;&quot;http://example.com/unsubcribe&quot; target&#x3D;&quot;_blank&quot; style&#x3D;&quot;text-decoration: underline; color: #ffffff;&quot; rel&#x3D;&quot;noopener&quot;&gt;Unsubscribe&lt;/a&gt; or &lt;a href&#x3D;&quot;http://www.example.com&quot; target&#x3D;&quot;_blank&quot; style&#x3D;&quot;text-decoration: underline; color: #ffffff;&quot; rel&#x3D;&quot;noopener&quot;&gt;Manage Preferences&lt;/a&gt;&lt;/p&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;div class&#x3D;&quot;spacer_block block-7&quot; style&#x3D;&quot;height:40px;line-height:40px;font-size:1px;&quot;&gt;&amp;#8202;&lt;/div&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t&lt;table class&#x3D;&quot;row row-10&quot; align&#x3D;&quot;center&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff;&quot;&gt;
+\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t&lt;td&gt;
+\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;row-content stack&quot; align&#x3D;&quot;center&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 650px; margin: 0 auto;&quot; width&#x3D;&quot;650&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;tbody&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;column column-1&quot; width&#x3D;&quot;100%&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; padding-bottom: 5px; padding-top: 5px; vertical-align: top; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;icons_block block-1&quot; width&#x3D;&quot;100%&quot; border&#x3D;&quot;0&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; text-align: center; line-height: 0;&quot;&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td class&#x3D;&quot;pad&quot; style&#x3D;&quot;vertical-align: middle; color: #1e0e4b; font-family: &#x27;Inter&#x27;, sans-serif; font-size: 15px; padding-bottom: 5px; padding-top: 5px; text-align: center;&quot;&gt;&lt;!--[if vml]&gt;&lt;table align&#x3D;&quot;center&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot; style&#x3D;&quot;display:inline-block;padding-left:0px;padding-right:0px;mso-table-lspace: 0pt;mso-table-rspace: 0pt;&quot;&gt;&lt;![endif]--&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;!--[if !vml]&gt;&lt;!--&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;table class&#x3D;&quot;icons-inner&quot; style&#x3D;&quot;mso-table-lspace: 0pt; mso-table-rspace: 0pt; display: inline-block; padding-left: 0px; padding-right: 0px;&quot; cellpadding&#x3D;&quot;0&quot; cellspacing&#x3D;&quot;0&quot; role&#x3D;&quot;presentation&quot;&gt;&lt;!--&lt;![endif]--&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td style&#x3D;&quot;vertical-align: middle; text-align: center; padding-top: 5px; padding-bottom: 5px; padding-left: 5px; padding-right: 6px;&quot;&gt;&lt;a href&#x3D;&quot;http://designedwithbeefree.com/&quot; target&#x3D;&quot;_blank&quot; style&#x3D;&quot;text-decoration: none;&quot;&gt;&lt;img class&#x3D;&quot;icon&quot; alt&#x3D;&quot;Beefree Logo&quot; src&#x3D;&quot;https://d1oco4z2z1fhwp.cloudfront.net/assets/Beefree-logo.png&quot; height&#x3D;&quot;auto&quot; width&#x3D;&quot;34&quot; align&#x3D;&quot;center&quot; style&#x3D;&quot;display: block; height: auto; margin: 0 auto; border: 0;&quot;&gt;&lt;/a&gt;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;td style&#x3D;&quot;font-family: &#x27;Inter&#x27;, sans-serif; font-size: 15px; font-weight: undefined; color: #1e0e4b; vertical-align: middle; letter-spacing: undefined; text-align: center; line-height: normal;&quot;&gt;&lt;a href&#x3D;&quot;http://designedwithbeefree.com/&quot; target&#x3D;&quot;_blank&quot; style&#x3D;&quot;color: #1e0e4b; text-decoration: none;&quot;&gt;Designed with Beefree&lt;/a&gt;&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t\t\t\t\t&lt;/td&gt;
+\t\t\t\t\t\t\t&lt;/tr&gt;
+\t\t\t\t\t\t&lt;/tbody&gt;
+\t\t\t\t\t&lt;/table&gt;
+\t\t\t\t&lt;/td&gt;
+\t\t\t&lt;/tr&gt;
+\t\t&lt;/tbody&gt;
+\t&lt;/table&gt;&lt;!-- End --&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
+&#x60;</code>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'miscellaneous-variables';
+            var COMPODOC_CURRENT_PAGE_URL = 'variables.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
