@@ -67,6 +67,19 @@ export class UserService {
   async getAllUsers(pageOptionsDto: PageOptionsDto): Promise<PageDto<User>> {
     // return await this.userRepository.find();
     const queryBuilder = this.userRepository.createQueryBuilder('user');
+
+    if (pageOptionsDto.name) {
+      queryBuilder.andWhere('user.name ILIKE :name', {
+        name: `%${pageOptionsDto.name}%`,
+      });
+    }
+
+    if (pageOptionsDto.email) {
+      queryBuilder.andWhere('user.email ILIKE :email', {
+        email: `%${pageOptionsDto.email}%`,
+      });
+    }
+
     queryBuilder
       .orderBy('user.createdAt', pageOptionsDto.order)
       .skip(pageOptionsDto.skip)
