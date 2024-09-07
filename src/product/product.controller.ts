@@ -13,8 +13,6 @@ import {
 } from '@nestjs/common';
 
 import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
-import { PageOptionsDto } from '@common/dtos/page-options.dto';
-import { PageDto } from '@common/dtos/page.dto';
 import { Role } from '@common/enums/role.enum';
 import { ProductService } from '@product/product.service';
 import { Product } from '@product/entities/product.entity';
@@ -22,6 +20,8 @@ import { CreateProductDto } from '@product/dto/create-product.dto';
 import RoleGuard from '@auth/guards/role.guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { BufferedFile } from '@root/minio-client/file.model';
+import { ProductPageOptionsDto } from '@common/dtos/product-page-options.dto';
+import { ProductPageDto } from '@common/dtos/product-page.dto';
 
 @ApiBearerAuth()
 @ApiTags('Product')
@@ -32,9 +32,9 @@ export class ProductController {
   // product 전체를 불러오는 api
   @Get('/all')
   async getAllProducts(
-    @Query() pageOptionsDto: PageOptionsDto,
-  ): Promise<PageDto<Product>> {
-    return await this.productService.getProducts(pageOptionsDto);
+    @Query() productPageOptionsDto: ProductPageOptionsDto,
+  ): Promise<ProductPageDto<Product>> {
+    return await this.productService.getProducts(productPageOptionsDto);
   }
 
   // product를 등록하는 api
@@ -78,7 +78,7 @@ export class ProductController {
         },
 
         category: {
-          type: 'string',
+          type: 'enum',
           description: 'Category of product',
           example: 'Mobile',
         },

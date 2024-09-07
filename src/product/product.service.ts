@@ -1,13 +1,13 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { PageOptionsDto } from '@common/dtos/page-options.dto';
-import { PageDto } from '@common/dtos/page.dto';
-import { PageMetaDto } from '@common/dtos/page-meta.dto';
 import { Product } from '@product/entities/product.entity';
 import { CreateProductDto } from '@product/dto/create-product.dto';
 import { MinioClientService } from '@root/minio-client/minio-client.service';
 import { BufferedFile } from '@root/minio-client/file.model';
+import { ProductPageOptionsDto } from '@common/dtos/product-page-options.dto';
+import { ProductPageDto } from '@common/dtos/product-page.dto';
+import { ProductPageMetaDto } from '@common/dtos/product-page-meta.dto';
 
 @Injectable()
 export class ProductService {
@@ -17,19 +17,35 @@ export class ProductService {
     private readonly minioClientService: MinioClientService,
   ) {}
 
-  async getProducts(pageOptionsDto: PageOptionsDto): Promise<PageDto<Product>> {
+  async getProducts(
+    productPageOptionsDto: ProductPageOptionsDto,
+  ): Promise<ProductPageDto<Product>> {
     // const products = await this.productRepository.find();
     // return { count: products.length, data: products };
     const queryBuilder = this.productRepository.createQueryBuilder('product');
+
+    if (productPageOptionsDto.name) {
+      queryBuilder.andWhere('product.name ILIKE :name', {
+        name: `%${productPageOptionsDto.name}%`,
+      });
+    }
+    if (productPageOptionsDto.category) {
+      queryBuilder.andWhere('product.name ILIKE :name', {
+        name: `%${productPageOptionsDto.name}%`,
+      });
+    }
     queryBuilder
-      .orderBy('product.createdAt', pageOptionsDto.order)
-      .skip(pageOptionsDto.skip)
-      .take(pageOptionsDto.take);
+      .orderBy('product.createdAt', productPageOptionsDto.order)
+      .skip(productPageOptionsDto.skip)
+      .take(productPageOptionsDto.take);
 
     const itemCount = await queryBuilder.getCount();
     const { entities } = await queryBuilder.getRawAndEntities();
-    const pageMetaDto = new PageMetaDto({ itemCount, pageOptionsDto });
-    return new PageDto(entities, pageMetaDto);
+    const pageMetaDto = new ProductPageMetaDto({
+      itemCount,
+      productPageOptionsDto,
+    });
+    return new ProductPageDto(entities, pageMetaDto);
   }
 
   async postProduct(image?: BufferedFile, createProductDto?: CreateProductDto) {

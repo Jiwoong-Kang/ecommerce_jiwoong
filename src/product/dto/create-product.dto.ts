@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Category } from '@common/enums/category.enum';
 
 export class CreateProductDto {
-  @ApiProperty({ example: 'Iphone16' })
+  @ApiProperty({ example: 'washing machine' })
   name: string;
   @ApiProperty({ example: 'good' })
   description: string;
@@ -13,6 +14,6 @@ export class CreateProductDto {
   stock: number;
   @ApiProperty({ example: 'true' })
   isSale: boolean;
-  @ApiProperty({ example: 'iphone' })
-  category: string;
+  @ApiProperty({ example: Category.MACHINES })
+  category?: Category;
 }

@@ -1,5 +1,6 @@
 import { Column, Entity } from 'typeorm';
 import { BaseEntity } from '@common/base.entity';
+import { Category } from '@common/enums/category.enum';
 
 @Entity()
 export class Product extends BaseEntity {
@@ -21,6 +22,10 @@ export class Product extends BaseEntity {
   @Column({ default: true })
   public isSale: boolean;
 
-  @Column({ nullable: true })
-  public category: string;
+  @Column({
+    type: 'enum',
+    enum: Category,
+    default: Category.MACHINES,
+  })
+  public category: Category;
 }

@@ -4,7 +4,7 @@ import { Type } from 'class-transformer';
 import { number } from '@hapi/joi';
 import { Order } from '@common/constants/order.constant';
 
-export class PageOptionsDto {
+export class ProductPageOptionsDto {
   @ApiPropertyOptional({ enum: Order, default: Order.ASC })
   @IsEnum(Order)
   @IsOptional()
@@ -12,8 +12,6 @@ export class PageOptionsDto {
 
   @ApiPropertyOptional({ minimum: 1, default: 1 })
   @Type(() => number)
-  // @IsInt()
-  // @Min(1)
   @IsOptional()
   readonly page?: number = 1;
 
@@ -23,20 +21,18 @@ export class PageOptionsDto {
     default: 10,
   })
   @Type(() => number)
-  // @Min(1)
-  // @Max(50)
   @IsOptional()
   readonly take?: number = 10;
 
-  @ApiPropertyOptional({ example: 'Jiwoong' })
+  @ApiPropertyOptional({ example: 'Dish Washer' })
   @Type(() => String)
   @IsOptional()
   readonly name?: string;
 
-  @ApiPropertyOptional({ example: 'dnd0311@naver.com' })
+  @ApiPropertyOptional({ example: 'machine' })
   @Type(() => String)
   @IsOptional()
-  readonly email?: string;
+  readonly category?: string;
 
   get skip(): number {
     return (this.page - 1) * this.take;

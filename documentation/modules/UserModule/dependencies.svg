@@ -24,59 +24,59 @@
 <title>cluster_UserModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="98,-70 98,-268 398,-268 398,-70 98,-70"/>
 </g>
-<g id="clust3" class="cluster">
-<title>cluster_UserModule_imports</title>
-<polygon fill="none" stroke="black" points="246,-78 246,-130 390,-130 390,-78 246,-78"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_UserModule_providers</title>
-<polygon fill="none" stroke="black" points="106,-78 106,-130 238,-130 238,-78 106,-78"/>
+<polygon fill="none" stroke="black" points="258,-78 258,-130 390,-130 390,-78 258,-78"/>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_UserModule_imports</title>
+<polygon fill="none" stroke="black" points="106,-78 106,-130 250,-130 250,-78 106,-78"/>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_UserModule_exports</title>
-<polygon fill="none" stroke="black" points="193,-208 193,-260 297,-260 297,-208 193,-208"/>
+<polygon fill="none" stroke="black" points="199,-208 199,-260 303,-260 303,-208 199,-208"/>
 </g>
 <!-- MinioClientModule -->
 <g id="node1" class="node">
 <title>MinioClientModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="382,-122 379,-126 358,-126 355,-122 254,-122 254,-86 382,-86 382,-122"/>
-<text text-anchor="middle" x="318" y="-99.8" font-family="Times,serif" font-size="14.00">MinioClientModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="242,-122 239,-126 218,-126 215,-122 114,-122 114,-86 242,-86 242,-122"/>
+<text text-anchor="middle" x="178" y="-99.8" font-family="Times,serif" font-size="14.00">MinioClientModule</text>
 </g>
 <!-- UserModule -->
 <g id="node2" class="node">
 <title>UserModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="287.98,-187 284.98,-191 263.98,-191 260.98,-187 202.02,-187 202.02,-151 287.98,-151 287.98,-187"/>
-<text text-anchor="middle" x="245" y="-164.8" font-family="Times,serif" font-size="14.00">UserModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="293.98,-187 290.98,-191 269.98,-191 266.98,-187 208.02,-187 208.02,-151 293.98,-151 293.98,-187"/>
+<text text-anchor="middle" x="251" y="-164.8" font-family="Times,serif" font-size="14.00">UserModule</text>
 </g>
 <!-- MinioClientModule&#45;&gt;UserModule -->
 <g id="edge1" class="edge">
 <title>MinioClientModule&#45;&gt;UserModule</title>
-<path fill="none" stroke="black" d="M270.99,-122.11C270.99,-122.11 270.99,-140.99 270.99,-140.99"/>
-<polygon fill="black" stroke="black" points="267.49,-140.99 270.99,-150.99 274.49,-140.99 267.49,-140.99"/>
+<path fill="none" stroke="black" d="M225.01,-122.11C225.01,-122.11 225.01,-140.99 225.01,-140.99"/>
+<polygon fill="black" stroke="black" points="221.51,-140.99 225.01,-150.99 228.51,-140.99 221.51,-140.99"/>
 </g>
 <!-- UserService  -->
 <g id="node3" class="node">
 <title>UserService </title>
-<polygon fill="#fb8072" stroke="black" points="288.9,-252 201.1,-252 201.1,-216 288.9,-216 288.9,-252"/>
-<text text-anchor="middle" x="245" y="-229.8" font-family="Times,serif" font-size="14.00">UserService </text>
+<polygon fill="#fb8072" stroke="black" points="294.9,-252 207.1,-252 207.1,-216 294.9,-216 294.9,-252"/>
+<text text-anchor="middle" x="251" y="-229.8" font-family="Times,serif" font-size="14.00">UserService </text>
 </g>
 <!-- UserModule&#45;&gt;UserService  -->
 <g id="edge2" class="edge">
 <title>UserModule&#45;&gt;UserService </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M245,-187.11C245,-187.11 245,-205.99 245,-205.99"/>
-<polygon fill="black" stroke="black" points="241.5,-205.99 245,-215.99 248.5,-205.99 241.5,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M251,-187.11C251,-187.11 251,-205.99 251,-205.99"/>
+<polygon fill="black" stroke="black" points="247.5,-205.99 251,-215.99 254.5,-205.99 247.5,-205.99"/>
 </g>
 <!-- UserService -->
 <g id="node4" class="node">
 <title>UserService</title>
-<ellipse fill="#fdb462" stroke="black" cx="172" cy="-104" rx="58.44" ry="18"/>
-<text text-anchor="middle" x="172" y="-99.8" font-family="Times,serif" font-size="14.00">UserService</text>
+<ellipse fill="#fdb462" stroke="black" cx="324" cy="-104" rx="58.44" ry="18"/>
+<text text-anchor="middle" x="324" y="-99.8" font-family="Times,serif" font-size="14.00">UserService</text>
 </g>
 <!-- UserService&#45;&gt;UserModule -->
 <g id="edge3" class="edge">
 <title>UserService&#45;&gt;UserModule</title>
-<path fill="none" stroke="black" d="M216.12,-115.92C216.12,-115.92 216.12,-140.77 216.12,-140.77"/>
-<polygon fill="black" stroke="black" points="212.62,-140.77 216.12,-150.77 219.62,-140.77 212.62,-140.77"/>
+<path fill="none" stroke="black" d="M279.88,-115.92C279.88,-115.92 279.88,-140.77 279.88,-140.77"/>
+<polygon fill="black" stroke="black" points="276.38,-140.77 279.88,-150.77 283.38,-140.77 276.38,-140.77"/>
 </g>
 </g>
 </svg>
