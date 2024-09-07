@@ -14,6 +14,7 @@ import { AppService } from '@root/app.service';
 import { ConsentModule } from './consent/consent.module';
 import { ProfileModule } from './profile/profile.module';
 import { MinioClientModule } from './minio-client/minio-client.module';
+import { TerminusModule } from '@nestjs/terminus';
 
 @Module({
   imports: [
@@ -53,6 +54,7 @@ import { MinioClientModule } from './minio-client/minio-client.module';
         MINIO_BUCKET: Joi.string().required(),
       }),
     }),
+    TerminusModule,
     DatabaseModule,
     UserModule,
     ProductModule,
