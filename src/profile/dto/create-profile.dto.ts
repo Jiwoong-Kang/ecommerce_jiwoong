@@ -5,8 +5,9 @@ import { BloodType } from '@common/enums/bloodtype.enum';
 export class CreateProfileDto {
   @ApiProperty({
     description: 'Gender',
-    default: Gender.MALE,
     enum: Gender,
+    enumName: 'Gender',
+    default: Gender.MALE,
   })
   gender: Gender;
 
@@ -24,8 +25,9 @@ export class CreateProfileDto {
 
   @ApiProperty({
     description: 'BloodType',
-    default: BloodType.TYPE_A,
     enum: BloodType,
+    enumName: 'BloodType',
+    default: BloodType.TYPE_A,
   })
   bloodType: BloodType;
 

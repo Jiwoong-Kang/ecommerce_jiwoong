@@ -25,7 +25,7 @@ export class Product extends BaseEntity {
   @Column({
     type: 'enum',
     enum: Category,
-    default: Category.MACHINES,
+    default: Category.CLOTHES,
   })
   public category: Category;
 }
