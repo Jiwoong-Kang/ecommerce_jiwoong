@@ -1,6 +1,7 @@
 import {
   HttpException,
   HttpStatus,
+  Inject,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -17,6 +18,8 @@ import { PageDto } from '@common/dtos/page.dto';
 import { PageMetaDto } from '@common/dtos/page-meta.dto';
 import { BufferedFile } from '@root/minio-client/file.model';
 import { MinioClientService } from '@root/minio-client/minio-client.service';
+import { CACHE_MANAGER } from '@nestjs/common/cache';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class UserService {
@@ -26,6 +29,7 @@ export class UserService {
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
     private readonly minioClientService: MinioClientService,
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
   ) {}
 
   // id 기반으로 유저를 찾는 로직
@@ -105,5 +109,23 @@ export class UserService {
       ...updateUserDto,
       profileImg,
     });
+  }
+
+  async setCurrentRefreshTokenToRedis(refreshToken: string, userId: string) {
+    const currentHashedRefreshToken = await bcrypt.hash(refreshToken, 10);
+    await this.cacheManager.set(userId, currentHashedRefreshToken);
+  }
+
+  async getUserIfRefreshTokenMatches(
+    refreshToken: string,
+    userId: string,
+  ): Promise<User> {
+    const user = await this.getUserById(userId);
+    const getUserIdFromRedis = await this.cacheManager.get(user.id);
+    const isRefreshTokenMatching = await bcrypt.compare(
+      refreshToken,
+      getUserIdFromRedis,
+    );
+    if (isRefreshTokenMatching) return user;
   }
 }

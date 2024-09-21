@@ -11,7 +11,13 @@ import {
   UseGuards,
 } from '@nestjs/common';
 
-import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 import { UserService } from '@user/user.service';
 import { CreateUserDto } from '@user/dto/create-user.dto';
 import { LoginUserDto } from '@user/dto/login-user.dto';
@@ -26,6 +32,8 @@ import { GoogleAuthGuard } from '@auth/guards/google-auth.guard';
 import { KakaoAuthGuard } from '@auth/guards/kakao-auth.guard';
 import { NaverAuthGuard } from '@auth/guards/naver-auth.guard';
 import { Response } from 'express';
+import { RefreshAuthGuard } from '@auth/guards/refresh-auth.guard';
+import { User } from '@user/entities/user.entity';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -50,10 +58,17 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   async loginUser(@Req() req: RequestWithUser, @Res() res: Response) {
     const user = req.user;
-    const accessCookie = await this.authService.generateAccessToken(user.id);
+    const { accessToken, accessCookie } =
+      await this.authService.generateAccessToken(user.id);
+    const { refreshToken, refreshCookie } =
+      await this.authService.generateRefreshToken(user.id);
 
-    res.setHeader('Set-Cookie', [accessCookie]);
-    res.send(user);
+    await this.userService.setCurrentRefreshTokenToRedis(refreshToken, user.id);
+
+    res.setHeader('Set-Cookie', [accessCookie, refreshCookie]);
+    res.send({ user, accessToken, refreshToken });
+
+    // 레디스에 유저정보를 저장하는 프로세스
 
     // return { user, token };
   }
@@ -62,6 +77,20 @@ export class AuthController {
   //   const token = await this.authService.generateAccessToken(user.id);
   //   return { user, token };
   // }
+
+  @UseGuards(RefreshAuthGuard)
+  @Get('/refresh')
+  @ApiResponse({ status: 200, description: 'Refresh Successfully' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiOperation({ summary: 'Refresh', description: 'Refresh Successfully' })
+  async refresh(@Req() req: RequestWithUser, @Res() res: Response) {
+    const user = req.user;
+    const { accessCookie } = await this.authService.generateAccessToken(
+      user.id,
+    );
+    res.setHeader('Set-Cookie', [accessCookie]);
+    res.send(user);
+  }
 
   @ApiBearerAuth()
   //스웨거 상에서 헤더에 토큰이 있단 걸 알려줘서 프로그램이 알아듣게 함
