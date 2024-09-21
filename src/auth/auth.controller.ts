@@ -7,6 +7,7 @@ import {
   Post,
   Put,
   Req,
+  Res,
   UseGuards,
 } from '@nestjs/common';
 
@@ -24,6 +25,7 @@ import { JwtAuthGuard } from '@auth/guards/jwt-auth.guard';
 import { GoogleAuthGuard } from '@auth/guards/google-auth.guard';
 import { KakaoAuthGuard } from '@auth/guards/kakao-auth.guard';
 import { NaverAuthGuard } from '@auth/guards/naver-auth.guard';
+import { Response } from 'express';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -46,10 +48,14 @@ export class AuthController {
   @Post('/login')
   @ApiBody({ type: LoginUserDto })
   @UseGuards(LocalAuthGuard)
-  async loginUser(@Req() req: RequestWithUser) {
+  async loginUser(@Req() req: RequestWithUser, @Res() res: Response) {
     const user = req.user;
-    const token = await this.authService.generateAccessToken(user.id);
-    return { user, token };
+    const accessCookie = await this.authService.generateAccessToken(user.id);
+
+    res.setHeader('Set-Cookie', [accessCookie]);
+    res.send(user);
+
+    // return { user, token };
   }
   // async loginUser(@Body() loginUserDto: LoginUserDto) {
   //   const user = await this.authService.loginUser(loginUserDto);

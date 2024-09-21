@@ -68,11 +68,13 @@ export class AuthService {
 
   public generateAccessToken(userId: string) {
     const payload: TokenPayload = { userId };
-    const token = this.jwtService.sign(payload, {
+    const accessToken = this.jwtService.sign(payload, {
       secret: this.configService.get('ACCESS_TOKEN_SECRET'),
       expiresIn: `${this.configService.get('ACCESS_TOKEN_EXPIRATION_TIME')}`,
     });
-    return token;
+    // return token;
+    const accessCookie = `Authentication=${accessToken}; Path=/; Max-Age=${this.configService.get('ACCESS_TOKEN_EXPIRATION_TIME')}`;
+    return accessCookie;
   }
 
   async signupWelcomeEmail(email: string) {
