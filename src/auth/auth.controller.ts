@@ -14,6 +14,7 @@ import {
 import {
   ApiBearerAuth,
   ApiBody,
+  ApiCookieAuth,
   ApiOperation,
   ApiResponse,
   ApiTags,
@@ -67,6 +68,7 @@ export class AuthController {
 
     res.setHeader('Set-Cookie', [accessCookie, refreshCookie]);
     res.send({ user, accessToken, refreshToken });
+    // user만 반환해줘도 충분하긴 함
 
     // 레디스에 유저정보를 저장하는 프로세스
 
@@ -92,8 +94,6 @@ export class AuthController {
     res.send(user);
   }
 
-  @ApiBearerAuth()
-  //스웨거 상에서 헤더에 토큰이 있단 걸 알려줘서 프로그램이 알아듣게 함
   @Get()
   @UseGuards(JwtAuthGuard)
   async authenticate(@Req() req: RequestWithUser) {
