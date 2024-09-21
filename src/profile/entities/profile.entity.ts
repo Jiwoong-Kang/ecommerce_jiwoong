@@ -17,11 +17,11 @@ export class Profile extends BaseEntity {
   })
   public gender: Gender;
 
-  @Column()
-  public age: number;
+  @Column({ nullable: true })
+  public age?: number;
 
-  @Column()
-  public birthday: Date;
+  @Column({ nullable: true })
+  public birthday?: Date;
 
   @Column()
   public height: number;

@@ -23,7 +23,6 @@ export class CreateProductDto {
   @ApiProperty({
     description: 'Category',
     enum: Category,
-    enumName: 'Category',
     default: Category.CLOTHES,
   })
   category?: Category;

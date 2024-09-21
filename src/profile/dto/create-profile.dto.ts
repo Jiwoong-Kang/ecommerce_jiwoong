@@ -6,13 +6,12 @@ export class CreateProfileDto {
   @ApiProperty({
     description: 'Gender',
     enum: Gender,
-    enumName: 'Gender',
     default: Gender.MALE,
   })
   gender: Gender;
 
   @ApiProperty({ example: 26 })
-  age: number;
+  age?: number;
 
   @ApiProperty({ example: '1999-03-11' })
   birthday: Date;
@@ -26,7 +25,6 @@ export class CreateProfileDto {
   @ApiProperty({
     description: 'BloodType',
     enum: BloodType,
-    enumName: 'BloodType',
     default: BloodType.TYPE_A,
   })
   bloodType: BloodType;

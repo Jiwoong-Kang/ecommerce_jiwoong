@@ -22,6 +22,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { BufferedFile } from '@root/minio-client/file.model';
 import { ProductPageOptionsDto } from '@common/dtos/product-page-options.dto';
 import { ProductPageDto } from '@common/dtos/product-page.dto';
+import { Category } from '@common/enums/category.enum';
 
 @ApiBearerAuth()
 @ApiTags('Product')
@@ -80,6 +81,7 @@ export class ProductController {
         category: {
           type: 'enum',
           description: 'Category of product',
+          enum: ['food', 'clothes', 'machines', 'vehicle', 'housing'],
           example: 'Mobile',
         },
       },
